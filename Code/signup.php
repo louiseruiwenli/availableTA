@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     <title>Login Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -16,10 +14,6 @@
         <p>
           <label>Full Name:</label>
           <input type="text" id="name" name="name"  />
-        </p>
-        <p>
-          <label>Password:</label>
-          <input type="password" id="pass" name="pass"  />
         </p>
         <p>
           <label>Phone:</label>
