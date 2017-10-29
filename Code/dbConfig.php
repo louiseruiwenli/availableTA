@@ -16,8 +16,5 @@ $success = mysqli_real_connect(
    $db,
    $port
 );
-//$conn=mysql_connect("$host:$port",$user,$password) or die (mysql_error());
-//mysql_select_db($db, $conn) or die (mysql_error());
-
 
 ?>

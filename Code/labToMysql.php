@@ -19,18 +19,18 @@ if(isset($_POST["Import"])){
                     {
                         echo "<script type=\"text/javascript\">
                                 alert(\"Invalid File:Please Upload CSV File.\");
-                                window.location = \"admin.php\"
+                                window.location = \"admin.html\"
                               </script>";
                     }
                     else {
                           echo "<script type=\"text/javascript\">
                             alert(\"CSV File has been successfully Imported.\");
-                            window.location = \"admin.php\"
+                            window.location = \"admin.html\"
                         </script>";
                     }
                  }
 
-             fclose($file);
+            fclose($file);
 
             }
         }else{
