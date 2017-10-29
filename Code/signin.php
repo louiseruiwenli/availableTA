@@ -12,16 +12,16 @@
 
   <body>
     <div id="frm">
-      <form action="process.php" method="POST">
+      <form action="checklogin.php" method="POST">
         <p>
           <label>Email:</label>
-          <input type="text" placeholder="username" id="email" name="email"  />
+          <input type="text" placeholder="username" id="username" name="username"  />
         </p>
         <p>
           <label>Password:</label>
           <input type="text" placeholder="password" id="password" name="password"  />
         </p>
-          <button type="button" onclick="login();" id="login">Login</button>
+          <input class="btn btn-default btn-orange" type="submit" name="Submit" value="Login">
 
       </form>
     </div>
