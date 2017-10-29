@@ -17,7 +17,7 @@
             </div>
             <div class="row">
 
-                <form class="form-horizontal" action="functions.php" method="post" name="upload_excel" enctype="multipart/form-data">
+                <form class="form-horizontal" action="csvToMysql.php" method="post" name="upload_excel" enctype="multipart/form-data">
                     <fieldset>
                         <!-- Form Name -->
                         <legend>Upload TA and Professor Information</legend>
@@ -69,9 +69,6 @@
                 </form>
 
             </div>
-            <?php
-               get_all_records();
-            ?>
         </div>
     </div>
 </body>
