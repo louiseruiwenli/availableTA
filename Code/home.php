@@ -1,4 +1,5 @@
 <?php
+require "dbConfig.php";
 // Initialize the session
 session_start();
 
@@ -7,6 +8,15 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   header("location: login.php");
   exit;
 }
+$email = $_SESSION['username'];
+$sql = "SELECT ID from User WHERE email = '$email'";
+$result=mysqli_query($link, $sql);
+
+if(!isset($result)){
+  $row = mysqli_fetch_row($result);
+  $userID = $row[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +32,41 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 <body>
     <div class="page-header">
-        <h1>Hi, <b><?php echo $_SESSION['username']; ?></b>. Welcome to our site.</h1>
+        <h1>AvailableTA</h1>
     </div>
-    <p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
+    <div class = "container-flow">
+      <div id="menu" class="col-md-2">
+        <img>
+        <ul>
+          <li><a href="viewProfile.php">View Profile</a></li>
+          <li><a href="editProfile.php">Edit Profile</a></li>
+          <li><a href="ViewSchedule.php">View Schedule</a></li>
+          <li><a href="EditSchedule.php">Edit Schedule</a></li>
+          <li><a href="logout.php">Logout</a></li>
+        </ul>
+      </div>
+      <div id="lablist" class = "col-md-8">
+        <?php
+        $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
+        $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
+        if(!isset($result_labinfo)){
+          $row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM);
+          $LabID = $row[0];
+          $CourseNumber = $row[1];
+          $CourseName = $row[2];
+          $StartTime = $row[3];
+          $EndTime = $row[4];
+          $DayOfWeek = $row[5];
+          $QuarterYear = $row[6];
+          echo "<div><h3>$CourseName</h3></div>";
+        }else{
+          echo "<p>Please choose your lab sessions in Edit Profile.</p>";
+        }
+        ?>
+
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
 </body>
 </html>
