@@ -46,30 +46,6 @@ if(isset($result)){
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
-      <div id="lablist" class = "col-md-8">
-        <?php
-        $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
-        $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
-        if(isset($result_labinfo)){
-          while($row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM)){
-            $LabID = $row[0];
-            $CourseNumber = $row[1];
-            $CourseName = $row[2];
-            $StartTime = $row[3];
-            $EndTime = $row[4];
-            $DayOfWeek = $row[5];
-            $QuarterYear = $row[6];
-            echo "<div class='col-md-4 text-left'><p>$LabID<br>$CourseNumber<br>$CourseName</p><button class='btn'>Request</button></div>";
-          }
-        }else{
-          echo "<p>Please choose your lab sessions in Edit Profile.</p>";
-        }
-
-        ?>
-
-      </div>
-      <div class="col-md-2">
-      </div>
     </div>
 </body>
 </html>
