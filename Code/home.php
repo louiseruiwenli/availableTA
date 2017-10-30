@@ -23,7 +23,7 @@ if(isset($result)){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>AvailableTA</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; }
@@ -37,13 +37,13 @@ if(isset($result)){
     <div class = "container-flow">
       <div id="menu" class="col-md-2">
         <img>
-        <ul>
-          <li><a href="home.php">Home</a></li>
-          <li><a href="viewProfile.php">View Profile</a></li>
-          <li><a href="editProfile.php">Edit Profile</a></li>
-          <li><a href="ViewSchedule.php">View Schedule</a></li>
-          <li><a href="EditSchedule.php">Edit Schedule</a></li>
-          <li><a href="logout.php">Logout</a></li>
+        <ul class="list-group text-left nav nav-bar">
+          <li class="list-group-item"><a href="home.php">Home</a></li>
+          <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
+          <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
+          <li class="list-group-item"><a href="ViewSchedule.php">View Schedule</a></li>
+          <li class="list-group-item"><a href="EditSchedule.php">Edit Schedule</a></li>
+          <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
       <div id="lablist" class = "col-md-8">

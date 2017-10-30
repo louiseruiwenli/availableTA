@@ -26,14 +26,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT email, password FROM Users WHERE email = '".$username.")";
+        $sql = "SELECT email, password FROM User WHERE email = '$username'";
+        //$result=mysqli_query($link, $sql);
 
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($link, $sql)or die(mysqli_error($link))){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
             // Set parameters
             $param_username = $username;
+            //echo $param_username;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -43,9 +45,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $username, $hash_password);
                     if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
+                      //echo $password;
+                      //echo $hash_password;
+                        if($password === $hash_password){
                             /* Password is correct, so start a new session and
                             save the username to the session */
                             session_start();
@@ -86,11 +90,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container">
+      <div class="page-header text-center">
+          <h1>AvailableTA</h1>
+      </div>
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
-        <!--<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">-->
-        <form action="checklogin.php" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <!--<form action="checklogin.php" method="post">-->
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username:<sup>*</sup></label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
@@ -102,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" class="btn btn-primary" value="Login">
             </div>
         </form>
     </div>
