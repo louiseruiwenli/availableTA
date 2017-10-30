@@ -59,7 +59,10 @@ if(isset($result)){
             $EndTime = $row[4];
             $DayOfWeek = $row[5];
             $QuarterYear = $row[6];
-            echo "<div class='col-md-4 text-left'><p>$LabID<br>$CourseNumber<br>$CourseName</p><button class='btn'>Request</button></div>";
+            echo "<form action='taList.php'>";
+            echo "<div class='col-md-4 text-left'><p>$LabID<br>$CourseNumber<br>$CourseName</p>
+                  <input type='submit' class='btn' value='Request'></div>";
+            echo "</form>";
           }
         }else{
           echo "<p>Please choose your lab sessions in Edit Profile.</p>";

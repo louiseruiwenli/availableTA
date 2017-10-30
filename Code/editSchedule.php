@@ -94,7 +94,7 @@ if(isset($result)){
             <th>Thrusday</th>
             <th>Friday</th>
         </tr>
-    </div>
+        </div>
 
         <tr>
             <th>9:15am - 12:00am</th>
@@ -104,7 +104,7 @@ if(isset($result)){
                 <td><input type="checkbox" value="Wed_morning" name="timetable"/>&nbsp;</td>
                 <td><input type="checkbox" value="Thu_morning" name="timetable"/>&nbsp;</td>
                 <td><input type="checkbox" value="Fri_morning" name="timetable"/>&nbsp;</td>
-            </div>
+
         </tr>
 
         <tr>
@@ -115,7 +115,7 @@ if(isset($result)){
                 <td><input type="checkbox" value="Wed_afternoon" name="timetable"/>&nbsp;</td>
                 <td><input type="checkbox" value="Thu_afternoon" name="timetable"/>&nbsp;</td>
                 <td><input type="checkbox" value="Fri_afternoon" name="timetable"/>&nbsp;</td>
-            </div>
+
         </tr>
 
         <tr>
@@ -127,7 +127,7 @@ if(isset($result)){
                 <td><input type="checkbox" value="Thu_evening" name="timetable"/>&nbsp;</td>
                 <td><input type="checkbox" value="Fri_evening" name="timetable"/>&nbsp;</td>
 
-            </div>
+
         </tr>
 
     </table>
