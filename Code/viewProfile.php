@@ -49,7 +49,7 @@ if($phone == 0){
     <div class="page-header">
         <h1>AvailableTA</h1>
     </div>
-    <div class = "container-flow">
+    <div class = "container-flow text-left">
       <div id="menu" class="col-md-2">
         <img>
         <ul class="list-group text-left nav nav-bar">
@@ -74,12 +74,15 @@ if($phone == 0){
         <?php
         $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
         $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
-        if(!isset($result_labinfo)){
-          $row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM);
-          $LabID = $row[0];
-          $CourseNumber = $row[1];
-          $CourseName = $row[2];
-          echo "<div><h3>$CourseName</h3></div>";
+        if(isset($result_labinfo)){
+          while($row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM)){
+            $LabID = $row[0];
+            $CourseNumber = $row[1];
+            $CourseName = $row[2];
+            echo "<div><p>$LabID&nbsp;$CourseNumber&nbsp;$CourseName</p></div>";
+          }
+
+
         }else{
           echo "<p>Please choose your lab sessions in Edit Profile.</p>";
         }

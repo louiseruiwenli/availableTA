@@ -84,6 +84,7 @@ if(isset($result)){
         </ul>
       </div>
       <div class="col-md-8">
+        <form action = "editSchedule.php" method = "post">
         <table width="80%" align="center" >
         <div id="head_nav">
         <tr>
@@ -99,58 +100,198 @@ if(isset($result)){
         <tr>
             <th>9:15am - 12:00am</th>
 
-                <td><input type="checkbox" value="Mon_morning" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Tue_morning" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Wed_morning" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Thu_morning" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Fri_morning" name="timetable"/>&nbsp;</td>
+
+                <td><input type="checkbox" value="M" name="timetable_morning[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="T" name="timetable_morning[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="W" name="timetable_morning[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="R" name="timetable_morning[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="F" name="timetable_morning[]"/>&nbsp;</td>
+                <?php
+                if(isset($_POST['save_schedule'])){
+                  if(isset($_POST['timetable_morning'])){
+                    $morning_array = $_POST['timetable_morning'];
+                  }
+
+                  foreach ($morning_array as $morning_day){
+                    $sql_update = "UPDATE Schedule SET Morning = '0' WHERE UserID = '$userID' and DayOfWeek = '".$morning_day."'";
+                    if(mysqli_query($link, $sql_update)){
+                      header("location: viewSchedule.php");
+                    }else{
+                      echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                    }
+                  }
+                }
+                 ?>
 
         </tr>
 
         <tr>
             <th>2:15pm - 5:00pm</td>
+              <?php
+              if(isset($_POST['save_schedule'])){
+                if(isset($_POST['timetable_afternoon'])){
+                  $afternoon_array = $_POST['timetable_afternoon'];
+                }
 
-                <td><input type="checkbox" value="Mon_afternoon" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Tue_afternoon" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Wed_afternoon" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Thu_afternoon" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Fri_afternoon" name="timetable"/>&nbsp;</td>
+                foreach ($afternoon_array as $afternoon_day){
+                  $sql_update = "UPDATE Schedule SET Afternoon = '0' WHERE UserID = '$userID' and DayOfWeek = '".$afternoon_day."'";
+                  if(mysqli_query($link, $sql_update)){
+                    header("location: viewSchedule.php");
+                  }else{
+                    echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                  }
+                }
+              }
+               ?>
+                <td><input type="checkbox" value="M" name="timetable_afternoon[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="T" name="timetable_afternoon[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="W" name="timetable_afternoon[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="R" name="timetable_afternoon[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="F" name="timetable_afternoon[]"/>&nbsp;</td>
 
         </tr>
 
         <tr>
             <th>5:15pm - 8:00pm</td>
+              <?php
+              if(isset($_POST['save_schedule'])){
+                if(isset($_POST['timetable_evening'])){
+                  $evening_array = $_POST['timetable_evening'];
+                }
 
-                <td><input type="checkbox" value="Mon_evening" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Tue_evening" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Wed_evening" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Thu_evening" name="timetable"/>&nbsp;</td>
-                <td><input type="checkbox" value="Fri_evening" name="timetable"/>&nbsp;</td>
+                foreach ($evening_array as $evening_day){
+                  $sql_update = "UPDATE Schedule SET Evening = '0' WHERE UserID = '$userID' and DayOfWeek = '".$evening_day."'";
+                  if(mysqli_query($link, $sql_update)){
+                    header("location: viewSchedule.php");
+                  }else{
+                    echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                  }
+                }
+              }
+               ?>
+                <td><input type="checkbox" value="M" name="timetable_evening[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="T" name="timetable_evening[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="W" name="timetable_evening[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="R" name="timetable_evening[]"/>&nbsp;</td>
+                <td><input type="checkbox" value="F" name="timetable_evening[]"/>&nbsp;</td>
 
 
         </tr>
 
     </table>
 
+
     <p align="center">Please check the box if you are not available.</p>
 
     <div style="text-align:center">
-    <button class="btn btn-primary" onclick="myFunction()">Save Schedule</button>
+    <input class="btn btn-primary" type ="submit" name="save_schedule" value="Save Schedule">
     </div>
-      </div>
+    </form>
+
+    <form action = "editSchedule.php" method = "post">
+    <table width="80%" align="center" >
+    <div id="head_nav">
+    <tr>
+        <th>Time of Lab Period</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thrusday</th>
+        <th>Friday</th>
+    </tr>
     </div>
 
-    <script>
-    function myFunction() {
-        var x = document.getElementsByName("timetable");
-        var i;
-        for (i = 0; i < x.length; i++) {
-            if (x[i].type == "checkbox" && x[i].checked = true) {
-                x[i].css('background-color',"red");
+    <tr>
+        <th>9:15am - 12:00am</th>
+
+
+            <td><input type="checkbox" value="M" name="timetable_morning[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="T" name="timetable_morning[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="W" name="timetable_morning[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="R" name="timetable_morning[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="F" name="timetable_morning[]"/>&nbsp;</td>
+            <?php
+            if(isset($_POST['save_schedule'])){
+              if(isset($_POST['timetable_morning'])){
+                $morning_array = $_POST['timetable_morning'];
+              }
+
+              foreach ($morning_array as $morning_day){
+                $sql_update = "UPDATE Schedule SET Morning = '1' WHERE UserID = '$userID' and DayOfWeek = '".$morning_day."'";
+                if(mysqli_query($link, $sql_update)){
+                  header("location: viewSchedule.php");
+                }else{
+                  echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                }
               }
             }
-        }
-    }
-    </script>
+             ?>
+
+    </tr>
+
+    <tr>
+        <th>2:15pm - 5:00pm</td>
+          <?php
+          if(isset($_POST['save_schedule'])){
+            if(isset($_POST['timetable_afternoon'])){
+              $afternoon_array = $_POST['timetable_afternoon'];
+            }
+
+            foreach ($afternoon_array as $afternoon_day){
+              $sql_update = "UPDATE Schedule SET Afternoon = '1' WHERE UserID = '$userID' and DayOfWeek = '".$afternoon_day."'";
+              if(mysqli_query($link, $sql_update)){
+                header("location: viewSchedule.php");
+              }else{
+                echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+              }
+            }
+          }
+           ?>
+            <td><input type="checkbox" value="M" name="timetable_afternoon[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="T" name="timetable_afternoon[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="W" name="timetable_afternoon[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="R" name="timetable_afternoon[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="F" name="timetable_afternoon[]"/>&nbsp;</td>
+
+    </tr>
+
+    <tr>
+        <th>5:15pm - 8:00pm</td>
+          <?php
+          if(isset($_POST['save_schedule'])){
+            if(isset($_POST['timetable_evening'])){
+              $evening_array = $_POST['timetable_evening'];
+            }
+
+            foreach ($evening_array as $evening_day){
+              $sql_update = "UPDATE Schedule SET Evening = '1' WHERE UserID = '$userID' and DayOfWeek = '".$evening_day."'";
+              if(mysqli_query($link, $sql_update)){
+                header("location: viewSchedule.php");
+              }else{
+                echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+              }
+            }
+          }
+           ?>
+            <td><input type="checkbox" value="M" name="timetable_evening[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="T" name="timetable_evening[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="W" name="timetable_evening[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="R" name="timetable_evening[]"/>&nbsp;</td>
+            <td><input type="checkbox" value="F" name="timetable_evening[]"/>&nbsp;</td>
+
+
+     </tr>
+
+     </table>
+
+
+     <p align="center">Please check the box if you ARE available.</p>
+
+     <div style="text-align:center">
+     <input class="btn btn-primary" type ="submit" name="save_schedule" value="Save Schedule">
+     </div>
+     </form>
+    </div>
+    </div>
 </body>
 </html>

@@ -61,12 +61,6 @@ if(isset($result)){
         padding: 5px 10px;
     }
 
-    td:hover
-    {
-        cursor: pointer;
-        background: #666;
-        color: white;
-    }
     </style>
 </head>
 

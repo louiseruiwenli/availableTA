@@ -132,6 +132,7 @@ if($phone == ""){
             </form>
           </div>
           <div class="col-md-6">
+            <h5>Your lab sessions:</h5>
             <?php
             $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
             $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
@@ -139,7 +140,7 @@ if($phone == ""){
               $LabID = $row[0];
               $CourseNumber = $row[1];
               $CourseName = $row[2];
-              echo "<div><h3>$CourseName</h3><button class='btn-warning' onclick = deleteLab()>Delete</button></div>";
+              echo "<div><p>$LabID&nbsp;$CourseNumber&nbsp;$CourseName</p><button class='btn-warning' onclick = deleteLab()>Delete</button></div>";
             }
             ?>
           </div>
