@@ -13,7 +13,7 @@ if(isset($_POST["Import"])){
                  {
 
 
-                   $sql = "INSERT into Lab (LabID, CourseNumber, Prof, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear) values ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."','".$getData[4]."','".$getData[5]."','".$getData[6]."','".$getData[7]."')";
+                   $sql = "INSERT into Lab (LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear) values ('".$getData[0]."','".$getData[1]."','".$getData[3]."','".$getData[4]."','".$getData[5]."','".$getData[6]."','".$getData[7]."')";
                        $result = mysqli_query($link, $sql);
                     if(!isset($result))
                     {

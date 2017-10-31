@@ -80,7 +80,7 @@ if(isset($result)){
       <div id="menu" class="col-md-2">
         <img>
         <ul class="list-group text-left nav nav-bar">
-          <li class="list-group-item"><a href="home.php">Home</a></li>
+          <li class="list-group-item"><a href="index.php">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item"><a href="viewSchedule.php">View Schedule</a></li>

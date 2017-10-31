@@ -9,7 +9,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   exit;
 }
 $email = $_SESSION['username'];
-$job = $_SESSION['job'];
+$ident = $_SESSION['job'];
+echo $ident;
 
 $sql = "SELECT ID,Name,email,TaProf,phone from User WHERE email = '".$email."'";
 $result=mysqli_query($link, $sql);
@@ -57,11 +58,11 @@ if($phone == ""){
       <div id="menu" class="col-md-2">
         <img>
         <ul class="list-group text-left nav nav-bar">
-          <li class="list-group-item"><a href="home.php">Home</a></li>
+          <li class="list-group-item"><a href="index.php">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
-          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
+          <li class="list-group-item <?php echo ($ident)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
+          <li class="list-group-item <?php echo ($ident)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -118,11 +119,11 @@ if($phone == ""){
                     }
 
                     foreach ($lab_array as $labid){
-                      $sql_updatelab = "UPDATE Lab SET TA_ID = '$userID' WHERE LabID = '$labid'";
+                      $sql_updatelab = ($ident=="0") ? "UPDATE Lab SET TA_ID = '$userID' WHERE LabID = '$labid'" : "UPDATE Lab SET Prof_ID = '$userID' WHERE LabID = '$labid'";
                       if(mysqli_query($link, $sql_updatelab)){
                         echo "Records were updated successfully.";
                       }else{
-                        echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                        echo "ERROR: Could not able to execute $sql_updatelab. " . mysqli_error($link);
                       }
                     }
                   }
