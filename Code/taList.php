@@ -75,7 +75,7 @@ if(isset($result)){
           }
           while($row = mysqli_fetch_array($result_list,MYSQLI_NUM)){
             $taID = $row[0];
-            $sql_user = "SELECT Name, phone FROM User WHERE ID = '$taID'";
+            $sql_user = "SELECT Name, phone FROM User WHERE ID = '$taID' AND TAProf = '0'";
             $result_user = mysqli_query($link, $sql_user);
             if(isset($result_list)){
               $row_list = mysqli_fetch_array($result_user,MYSQLI_NUM);
