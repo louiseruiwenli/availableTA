@@ -9,17 +9,34 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   exit;
 }
 $email = $_SESSION['username'];
-$sql = "SELECT ID from User WHERE email = '$email'";
+$job = $_SESSION['job'];
+if(isset($_POST['request'])){
+  $LabID=$_POST['request'][0];
+
+}
+
+$sql = "SELECT StartTime, DayOfWeek FROM Lab WHERE LabID = '$LabID'";
 $result=mysqli_query($link, $sql);
+
+$time = "";
+$row = mysqli_fetch_row($result);
+
+$startTime = $row[0];
+$day = $row[1];
+
+if($startTime==="9:15:00"){
+  $time="Morning";
+}else if($startTime==="14:15:00"){
+  $time="Afternoon";
+}else{
+  $time="Evening";
+}
 
 if(isset($result)){
   $row = mysqli_fetch_row($result);
   $userID = $row[0];
 }
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +60,33 @@ if(isset($result)){
           <li class="list-group-item"><a href="home.php">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
-          <li class="list-group-item"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item"><a href="editSchedule.php">Edit Schedule</a></li>
+          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
+          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
+      </div>
+      <div class="col-md-8 text-left">
+        <?php
+        $sql_list = "SELECT UserID FROM Schedule WHERE $time = '1' AND DayOfWeek = '$day'";
+        $result_list = mysqli_query($link, $sql_list);
+        if(isset($result_list)){
+          if(mysqli_num_rows($result_list)===0){
+            echo "No available TA during this time period! Please contact professor.";
+          }
+          while($row = mysqli_fetch_array($result_list,MYSQLI_NUM)){
+            $taID = $row[0];
+            $sql_user = "SELECT Name, phone FROM User WHERE ID = '$taID'";
+            $result_user = mysqli_query($link, $sql_user);
+            if(isset($result_list)){
+              $row_list = mysqli_fetch_array($result_user,MYSQLI_NUM);
+              $name = $row_list[0];
+              $phone = $row_list[1];
+              echo "<p>Name: $name &nbsp; Phone: $phone<p>";
+            }
+
+           }
+         }
+         ?>
       </div>
     </div>
 </body>

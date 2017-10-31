@@ -9,13 +9,17 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   exit;
 }
 $email = $_SESSION['username'];
-$sql = "SELECT ID from User WHERE email = '$email'";
+$sql = "SELECT ID,TAProf from User WHERE email = '$email'";
 $result=mysqli_query($link, $sql);
 
 if(isset($result)){
   $row = mysqli_fetch_row($result);
   $userID = $row[0];
+  $job = $row[1];
 }
+
+$_SESSION['job'] = $job;
+
 
 ?>
 
@@ -41,8 +45,8 @@ if(isset($result)){
           <li class="list-group-item"><a href="home.php">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
-          <li class="list-group-item"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item"><a href="editSchedule.php">Edit Schedule</a></li>
+          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
+          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -59,9 +63,10 @@ if(isset($result)){
             $EndTime = $row[4];
             $DayOfWeek = $row[5];
             $QuarterYear = $row[6];
-            echo "<form action='taList.php'>";
-            echo "<div class='col-md-4 text-left'><p>$LabID<br>$CourseNumber<br>$CourseName</p>
-                  <input type='submit' class='btn' value='Request'></div>";
+            //$_SESSION['LabID'] = $LabID;
+            echo "<form action='taList.php' method='post'>";
+            echo "<div class='col-md-4 text-left'>
+                  <input type='submit' class='btn' name='request[]' value='$LabID'>$CourseName</div>";
             echo "</form>";
           }
         }else{
@@ -72,6 +77,9 @@ if(isset($result)){
 
       </div>
       <div class="col-md-2">
+        <?php
+
+         ?>
       </div>
     </div>
 </body>

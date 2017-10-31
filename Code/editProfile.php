@@ -9,6 +9,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   exit;
 }
 $email = $_SESSION['username'];
+$job = $_SESSION['job'];
+
 $sql = "SELECT ID,Name,email,TaProf,phone from User WHERE email = '".$email."'";
 $result=mysqli_query($link, $sql);
 
@@ -58,8 +60,8 @@ if($phone == ""){
           <li class="list-group-item"><a href="home.php">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
-          <li class="list-group-item"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item"><a href="editSchedule.php">Edit Schedule</a></li>
+          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
+          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>

@@ -9,6 +9,11 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   exit;
 }
 $email = $_SESSION['username'];
+$job = $_SESSION['job'];
+if($job==="1"){
+  header("location: home.php");
+  exit;
+}
 $sql = "SELECT ID from User WHERE email = '$email'";
 $result=mysqli_query($link, $sql);
 
