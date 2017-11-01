@@ -46,7 +46,6 @@ $_SESSION['job'] = $job;
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -66,7 +65,10 @@ $_SESSION['job'] = $job;
             //$_SESSION['LabID'] = $LabID;
             echo "<form action='taList.php' method='post'>";
             echo "<div class='col-md-4 text-left'>
-                  <div>$CourseNumber&nbsp;$CourseName</div>
+                  <div><p>$CourseNumber</p>
+                  <p>$CourseName</p>
+                  <p>Start Time: $StartTime</p>
+                  <p>End Time: $EndTime</p></div>
                   <button type='submit' class='btn' name='request[]' value='$LabID'>Request</button></div>";
             echo "</form>";
           }

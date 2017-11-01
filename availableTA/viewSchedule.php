@@ -81,7 +81,6 @@ if(isset($result)){
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -166,6 +165,7 @@ if(isset($result)){
               ?>
         </tr>
     </table>
+    <a href="editSchedule.php"><button class="btn btn-primary">Edit</button></a>
     </div>
     </div>
 </body>

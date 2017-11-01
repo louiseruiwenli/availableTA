@@ -62,7 +62,6 @@ if(isset($result)){
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -76,13 +75,14 @@ if(isset($result)){
           }
           while($row = mysqli_fetch_array($result_list,MYSQLI_NUM)){
             $taID = $row[0];
-            $sql_user = "SELECT Name, phone FROM User WHERE ID = '$taID' AND TAProf = '0'";
+            $sql_user = "SELECT Name, email, phone FROM User WHERE ID = '$taID' AND TAProf = '0'";
             $result_user = mysqli_query($link, $sql_user);
             if(isset($result_list)){
               $row_list = mysqli_fetch_array($result_user,MYSQLI_NUM);
               $name = $row_list[0];
-              $phone = $row_list[1];
-              echo "<p>Name: $name &nbsp; Phone: $phone<p>";
+              $email = $row_list[1];
+              $phone = $row_list[2];
+              echo "<p>Name: $name &nbsp; Email: $email &nbsp;Phone: $phone<p>";
             }
 
            }

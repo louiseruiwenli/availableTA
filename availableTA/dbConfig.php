@@ -1,5 +1,8 @@
+
+
 <?php
 //DB details
+/*
 $host = 'dbserver.engr.scu.edu';
 $user = 'rli';
 $password = '00001172280';
@@ -10,5 +13,22 @@ $port = 3306;
 //$link = mysqli_init();
 //$success = mysqli_real_connect($link,$host,$user,$password,$db,$port);
 $link = mysqli_connect($host, $user, $password, $db) or die("Error" . mysqli_error($link));
+*/
+
+$user = 'root';
+$password = 'root';
+$db = 'availableTA';
+$host = 'localhost';
+$port = 8889;
+
+$link = mysqli_init();
+$success = mysqli_real_connect(
+   $link,
+   $host,
+   $user,
+   $password,
+   $db,
+   $port
+);
 
 ?>

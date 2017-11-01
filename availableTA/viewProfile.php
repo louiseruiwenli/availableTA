@@ -58,14 +58,13 @@ if($phone == 0){
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item <?php echo ($ident)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item <?php echo ($ident)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
       <div id="lablist" class = "col-md-8">
         <h3>Personal Information</h3>
         <p>Name: <?=$userName?></p>
-        <p>Student ID: <?=$userID?></p>
+        <p>ID: <?=$userID?></p>
         <p>Email: <?=$email?></p>
         <p>Job: <?=$job?></p>
         <p>Phone: <?=$phone?></p>
@@ -73,7 +72,7 @@ if($phone == 0){
 
         <h3>Lab Information</h3>
         <?php
-        $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
+        $sql_labinfo = (!$ident)? "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'" : "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE Prof_ID = '$userID'";
         $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
         if(isset($result_labinfo)){
           while($row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM)){

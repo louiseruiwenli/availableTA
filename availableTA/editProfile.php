@@ -59,14 +59,13 @@ if($phone == ""){
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item <?php echo ($ident)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item <?php echo ($ident)?'disabled':''?>"><a href="editSchedule.php">Edit Schedule</a></li>
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
       <div id="lablist" class = "col-md-8 text-left">
         <h3>Personal Information</h3>
         <p>Name: <?=$userName?></p>
-        <p>Student ID: <?=$userID?></p>
+        <p>ID: <?=$userID?></p>
         <p>Email: <?=$email?></p>
         <p>Job: <?=$job?></p>
         <?php

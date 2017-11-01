@@ -9,6 +9,7 @@ $username_err = $password_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
         $username_err = 'Please enter username.';
@@ -35,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Set parameters
             $param_username = $username;
+
             //echo $param_username;
 
             // Attempt to execute the prepared statement
