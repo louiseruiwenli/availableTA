@@ -10,7 +10,6 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 $email = $_SESSION['username'];
 $ident = $_SESSION['job'];
-echo $ident;
 
 $sql = "SELECT ID,Name,email,TaProf,phone from User WHERE email = '".$email."'";
 $result=mysqli_query($link, $sql);
@@ -34,8 +33,6 @@ if($TAProf==0){
 if($phone == ""){
   $phone = "Please edit your phone number!";
 }
-
-
 
 ?>
 
@@ -119,7 +116,7 @@ if($phone == ""){
                     }
 
                     foreach ($lab_array as $labid){
-                      $sql_updatelab = ($ident=="0") ? "UPDATE Lab SET TA_ID = '$userID' WHERE LabID = '$labid'" : "UPDATE Lab SET Prof_ID = '$userID' WHERE LabID = '$labid'";
+                      $sql_updatelab = (!$ident) ? "UPDATE Lab SET TA_ID = '$userID' WHERE LabID = '$labid'" : "UPDATE Lab SET Prof_ID = '$userID' WHERE LabID = '$labid'";
                       if(mysqli_query($link, $sql_updatelab)){
                         echo "Records were updated successfully.";
                       }else{
@@ -137,13 +134,16 @@ if($phone == ""){
           <div class="col-md-6">
             <h5>Your lab sessions:</h5>
             <?php
-            $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
+            $sql_labinfo = (!$ident) ? "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'" : "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE Prof_ID = '$userID'";
             $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
             while($row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM)){
               $LabID = $row[0];
               $CourseNumber = $row[1];
               $CourseName = $row[2];
-              echo "<div><p>$LabID&nbsp;$CourseNumber&nbsp;$CourseName</p><button class='btn-warning' onclick = deleteLab()>Delete</button></div>";
+              echo "<form action='deleteLab.php' method='post'>";
+              echo "<div><p>$LabID&nbsp;$CourseNumber&nbsp;$CourseName</p>
+                    <button class='btn-warning' type='submit' name='delete[]' value='$LabID'>Delete</button></div>";
+              echo "</form>";
             }
             ?>
           </div>

@@ -11,7 +11,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 $email = $_SESSION['username'];
 $job = $_SESSION['job'];
 if($job==="1"){
-  header("location: home.php");
+  header("location: index.php");
   exit;
 }
 $sql = "SELECT ID from User WHERE email = '$email'";

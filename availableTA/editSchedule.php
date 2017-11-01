@@ -11,7 +11,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 $email = $_SESSION['username'];
 $job = $_SESSION['job'];
 if($job==="1"){
-  header("location: home.php");
+  header("location: index.php");
   exit;
 }
 $sql = "SELECT ID from User WHERE email = '$email'";
@@ -111,18 +111,21 @@ if(isset($result)){
                 <td><input type="checkbox" value="F" name="timetable_morning[]"/>&nbsp;</td>
                 <?php
                 if(isset($_POST['save_unavailschedule'])){
+                  $morning_array = "";
                   if(isset($_POST['timetable_morning'])){
                     $morning_array = $_POST['timetable_morning'];
                   }
-
-                  foreach ($morning_array as $morning_day){
-                    $sql_update = "UPDATE Schedule SET Morning = '0' WHERE UserID = '$userID' and DayOfWeek = '".$morning_day."'";
-                    if(mysqli_query($link, $sql_update)){
-                      //header("location: viewSchedule.php");
-                    }else{
-                      echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                  if(is_array($morning_array)){
+                    foreach ($morning_array as $morning_day){
+                      $sql_update = "UPDATE Schedule SET Morning = '0' WHERE UserID = '$userID' and DayOfWeek = '".$morning_day."'";
+                      if(mysqli_query($link, $sql_update)){
+                        //header("location: viewSchedule.php");
+                      }else{
+                        echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                      }
                     }
                   }
+
                 }
                  ?>
 
@@ -132,18 +135,22 @@ if(isset($result)){
             <th>2:15pm - 5:00pm</td>
               <?php
               if(isset($_POST['save_unavailschedule'])){
+                $afternoon_array = "";
                 if(isset($_POST['timetable_afternoon'])){
                   $afternoon_array = $_POST['timetable_afternoon'];
                 }
 
-                foreach ($afternoon_array as $afternoon_day){
-                  $sql_update = "UPDATE Schedule SET Afternoon = '0' WHERE UserID = '$userID' and DayOfWeek = '".$afternoon_day."'";
-                  if(mysqli_query($link, $sql_update)){
-                    //header("location: viewSchedule.php");
-                  }else{
-                    echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                if(is_array($afternoon_array)){
+                  foreach ($afternoon_array as $afternoon_day){
+                    $sql_update = "UPDATE Schedule SET Afternoon = '0' WHERE UserID = '$userID' and DayOfWeek = '".$afternoon_day."'";
+                    if(mysqli_query($link, $sql_update)){
+                      //header("location: viewSchedule.php");
+                    }else{
+                      echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                    }
                   }
                 }
+
               }
                ?>
                 <td><input type="checkbox" value="M" name="timetable_afternoon[]"/>&nbsp;</td>
@@ -158,18 +165,22 @@ if(isset($result)){
             <th>5:15pm - 8:00pm</td>
               <?php
               if(isset($_POST['save_unavailschedule'])){
+                $evening_array = "";
                 if(isset($_POST['timetable_evening'])){
                   $evening_array = $_POST['timetable_evening'];
                 }
 
-                foreach ($evening_array as $evening_day){
-                  $sql_update = "UPDATE Schedule SET Evening = '0' WHERE UserID = '$userID' and DayOfWeek = '".$evening_day."'";
-                  if(mysqli_query($link, $sql_update)){
-                    //header("location: viewSchedule.php");
-                  }else{
-                    echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                if(is_array($evening_array)){
+                  foreach ($evening_array as $evening_day){
+                    $sql_update = "UPDATE Schedule SET Evening = '0' WHERE UserID = '$userID' and DayOfWeek = '".$evening_day."'";
+                    if(mysqli_query($link, $sql_update)){
+                      //header("location: viewSchedule.php");
+                    }else{
+                      echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                    }
                   }
                 }
+
               }
                ?>
                 <td><input type="checkbox" value="M" name="timetable_evening[]"/>&nbsp;</td>
@@ -215,18 +226,22 @@ if(isset($result)){
             <td><input type="checkbox" value="F" name="timetable_morning[]"/>&nbsp;</td>
             <?php
             if(isset($_POST['save_availschedule'])){
+              $morning_array = "";
               if(isset($_POST['timetable_morning'])){
                 $morning_array = $_POST['timetable_morning'];
               }
 
-              foreach ($morning_array as $morning_day){
-                $sql_update = "UPDATE Schedule SET Morning = '1' WHERE UserID = '$userID' and DayOfWeek = '".$morning_day."'";
-                if(mysqli_query($link, $sql_update)){
-                  //header("location: viewSchedule.php");
-                }else{
-                  echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+              if(is_array($morning_array)){
+                foreach ($morning_array as $morning_day){
+                  $sql_update = "UPDATE Schedule SET Morning = '1' WHERE UserID = '$userID' and DayOfWeek = '".$morning_day."'";
+                  if(mysqli_query($link, $sql_update)){
+                    //header("location: viewSchedule.php");
+                  }else{
+                    echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                  }
                 }
               }
+
             }
              ?>
 
@@ -236,18 +251,22 @@ if(isset($result)){
         <th>2:15pm - 5:00pm</td>
           <?php
           if(isset($_POST['save_availschedule'])){
+            $afternoon_array = "";
             if(isset($_POST['timetable_afternoon'])){
               $afternoon_array = $_POST['timetable_afternoon'];
             }
 
-            foreach ($afternoon_array as $afternoon_day){
-              $sql_update = "UPDATE Schedule SET Afternoon = '1' WHERE UserID = '$userID' and DayOfWeek = '".$afternoon_day."'";
-              if(mysqli_query($link, $sql_update)){
-                //header("location: viewSchedule.php");
-              }else{
-                echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+            if(is_array($afternoon_array)){
+              foreach ($afternoon_array as $afternoon_day){
+                $sql_update = "UPDATE Schedule SET Afternoon = '1' WHERE UserID = '$userID' and DayOfWeek = '".$afternoon_day."'";
+                if(mysqli_query($link, $sql_update)){
+                  //header("location: viewSchedule.php");
+                }else{
+                  echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                }
               }
             }
+
           }
            ?>
             <td><input type="checkbox" value="M" name="timetable_afternoon[]"/>&nbsp;</td>
@@ -262,18 +281,21 @@ if(isset($result)){
         <th>5:15pm - 8:00pm</td>
           <?php
           if(isset($_POST['save_availschedule'])){
+            $evening_array = "";
             if(isset($_POST['timetable_evening'])){
               $evening_array = $_POST['timetable_evening'];
             }
-
-            foreach ($evening_array as $evening_day){
-              $sql_update = "UPDATE Schedule SET Evening = '1' WHERE UserID = '$userID' and DayOfWeek = '".$evening_day."'";
-              if(mysqli_query($link, $sql_update)){
-                //header("location: viewSchedule.php");
-              }else{
-                echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+            if(is_array($evening_array)){
+              foreach ($evening_array as $evening_day){
+                $sql_update = "UPDATE Schedule SET Evening = '1' WHERE UserID = '$userID' and DayOfWeek = '".$evening_day."'";
+                if(mysqli_query($link, $sql_update)){
+                  //header("location: viewSchedule.php");
+                }else{
+                  echo "ERROR: Could not able to execute $sql_updatephone. " . mysqli_error($link);
+                }
               }
             }
+
           }
            ?>
             <td><input type="checkbox" value="M" name="timetable_evening[]"/>&nbsp;</td>

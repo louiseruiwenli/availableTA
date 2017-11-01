@@ -52,7 +52,7 @@ $_SESSION['job'] = $job;
       </div>
       <div id="lablist" class = "col-md-8">
         <?php
-        $sql_labinfo = "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'";
+        $sql_labinfo = (!$job) ? "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE TA_ID = '$userID'" : "SELECT LabID, CourseNumber, CourseName, StartTime, EndTime, DayOfWeek, QuarterYear FROM Lab WHERE Prof_ID = '$userID'";
         $result_labinfo=mysqli_query($link, $sql_labinfo) or die($result_labinfo);
         if(isset($result_labinfo)){
           while($row = mysqli_fetch_array($result_labinfo,MYSQLI_NUM)){
@@ -66,7 +66,8 @@ $_SESSION['job'] = $job;
             //$_SESSION['LabID'] = $LabID;
             echo "<form action='taList.php' method='post'>";
             echo "<div class='col-md-4 text-left'>
-                  <input type='submit' class='btn' name='request[]' value='$LabID'>$CourseName</div>";
+                  <div>$CourseNumber&nbsp;$CourseName</div>
+                  <button type='submit' class='btn' name='request[]' value='$LabID'>Request</button></div>";
             echo "</form>";
           }
         }else{
@@ -77,8 +78,16 @@ $_SESSION['job'] = $job;
 
       </div>
       <div class="col-md-2">
+        <h3>List of all TAs: </h3>
         <?php
-
+          $sql_ta = "SELECT Name FROM User WHERE TAProf = '0'";
+          $result_ta = mysqli_query($link, $sql_ta) or die($result_ta);
+          if(isset($result_ta)){
+            while($row = mysqli_fetch_array($result_ta,MYSQLI_NUM)){
+              $TA_name = $row[0];
+              echo "<p>$TA_name</p>";
+            }
+          }
          ?>
       </div>
     </div>

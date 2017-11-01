@@ -10,6 +10,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 $email = $_SESSION['username'];
 $job = $_SESSION['job'];
+
 if(isset($_POST['request'])){
   $LabID=$_POST['request'][0];
 
