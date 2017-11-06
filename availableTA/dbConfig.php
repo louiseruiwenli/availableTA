@@ -1,5 +1,3 @@
-
-
 <?php
 //DB details
 /*

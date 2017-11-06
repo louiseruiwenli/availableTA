@@ -29,12 +29,15 @@ $_SESSION['job'] = $job;
     <meta charset="UTF-8">
     <title>AvailableTA</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; }
     </style>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
 </head>
 
-<body>
+<body onload = "navinitialization()">
     <div class="page-header">
         <h1>AvailableTA</h1>
     </div>

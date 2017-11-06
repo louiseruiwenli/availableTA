@@ -128,49 +128,8 @@ if(isset($_POST['save_availschedule'])){
     <meta charset="UTF-8">
     <title>AvailableTA</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
-    </style>
-    <style type="text/css">
-    .unavailable
-      {
-        background-color:grey;
-      }
-    .available{
-      background-color:green;
-    }
-    body
-    {
-        font-family: arial;
-    }
-
-    th,td
-    {
-        margin: 0;
-        text-align: center;
-        border-collapse: collapse;
-        outline: 1px solid #e3e3e3;
-    }
-
-    td
-    {
-        padding: 5px 10px;
-    }
-
-    th
-    {
-        background: #666;
-        color: white;
-        padding: 5px 10px;
-    }
-
-    td:hover
-    {
-        cursor: pointer;
-        background: #666;
-        color: white;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/schedule.css">
 </head>
 
 <body>
