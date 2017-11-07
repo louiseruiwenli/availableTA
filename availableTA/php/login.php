@@ -2,26 +2,30 @@
 // Include config file
 require "dbConfig.php";
 
+//PHP header
+header("Content-Type: application/json");
+
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
+if($_SERVER["REQUEST_METHOD"] == "GET"){
 
     // Check if username is empty
-    if(empty(trim($_POST["username"]))){
+    if(empty(trim($_GET["username"]))){
         $username_err = 'Please enter username.';
+        echo json_encode('EmptyUser');
     } else{
-        $username = trim($_POST["username"]);
+        $username = trim($_GET["username"]);
     }
 
     // Check if password is empty
-    if(empty(trim($_POST['password']))){
+    if(empty(trim($_GET['password']))){
         $password_err = 'Please enter your password.';
+        echo json_encode('EmptyPass');
     } else{
-        $password = trim($_POST['password']);
+        $password = trim($_GET['password']);
     }
 
     // Validate credentials
@@ -56,18 +60,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             save the username to the session */
                             session_start();
                             $_SESSION['username'] = $username;
-                            header("location: index.php");
+                            echo json_encode('Login');
+
+                            //header("location: index.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
+                            echo json_encode('WrongPass');
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
                     $username_err = 'No account found with that username.';
+                    echo json_encode('NoUser');
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo json_encode('Error');
+                //echo "Oops! Something went wrong. Please try again later.";
             }
         }
 
@@ -79,41 +88,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-      <div class="page-header text-center">
-          <h1>AvailableTA</h1>
-      </div>
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <!--<form action="checklogin.php" method="post">-->
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username:<sup>*</sup></label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password:<sup>*</sup></label>
-                <input type="password" name="password" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-        </form>
-    </div>
-</body>
-</html>

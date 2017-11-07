@@ -1,6 +1,27 @@
+html{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
 body
 {
   font: 14px sans-serif;
   font-family: arial;
   text-align: center;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.page-header{
+  color: white;
+  background-color: darkred;
+  height: 150px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }

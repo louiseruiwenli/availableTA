@@ -1,12 +1,12 @@
 <?php
-require "dbConfig.php";
+require "php/dbConfig.php";
 // Initialize the session
 session_start();
 
 // If session variable is not set it will redirect to login page
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
-  exit;
+  //header("location: login.html");
+  //exit;
 }
 $email = $_SESSION['username'];
 $sql = "SELECT ID,TAProf from User WHERE email = '$email'";
@@ -34,10 +34,10 @@ $_SESSION['job'] = $job;
         body{ font: 14px sans-serif; text-align: center; }
     </style>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/jquery-3.1.1.min.js"></script>
+
 </head>
 
-<body onload = "navinitialization()">
+<body onload = "">
     <div class="page-header">
         <h1>AvailableTA</h1>
     </div>
