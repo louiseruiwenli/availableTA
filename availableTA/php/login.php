@@ -17,16 +17,17 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         $username_err = 'Please enter username.';
         echo json_encode('EmptyUser');
     } else{
+      if(empty(trim($_GET['password']))){
+          $password_err = 'Please enter your password.';
+          echo json_encode('EmptyPass');
+      } else{
         $username = trim($_GET["username"]);
+        $password = trim($_GET['password']);
+      }
     }
 
     // Check if password is empty
-    if(empty(trim($_GET['password']))){
-        $password_err = 'Please enter your password.';
-        echo json_encode('EmptyPass');
-    } else{
-        $password = trim($_GET['password']);
-    }
+  
 
     // Validate credentials
     if(empty($username_err) && empty($password_err)){

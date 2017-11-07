@@ -33,7 +33,8 @@ $_SESSION['job'] = $job;
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; }
     </style>
-    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/login.js"></script>
 
 </head>
 
@@ -49,8 +50,9 @@ $_SESSION['job'] = $job;
           <li class="list-group-item"><a href="viewProfile.php">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
           <li class="list-group-item <?php echo ($job)?'disabled':''?>"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item"><a href="logout.php">Logout</a></li>
+          <li class="list-group-item"><a id ="logout" href="login.html">Logout</a></li>
         </ul>
+
       </div>
       <div id="lablist" class = "col-md-8">
         <?php

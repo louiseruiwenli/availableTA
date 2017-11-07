@@ -33,3 +33,17 @@ function loginapply(){
       }
   })
 }
+
+$('#logout').click(function(e){
+  e.preventDefault();
+  var href = $(this).attr('href');
+  localStorage.clear();
+  window.location = href;
+});
+
+function logoutapply(){
+  $.get('../php/logout.php').done(function(){
+    localStorage.removeItem('username');
+    window.location.href = '../login.html';
+  });
+}
