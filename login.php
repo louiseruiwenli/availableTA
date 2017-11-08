@@ -7,13 +7,8 @@ $username = $password = "";
 $username_err = $password_err = "";
 
 // I don't know where this function should go, put it wherever the password is generated
-function generate_salt_and_hash($password) {
-	$salt = openssl_random_pseudo_bytes(32);
-	$options = {
-		'cost' => 10,
-		'salt' => $salt
-	};
-	$hash = password_hash($password, PASSWORD_BCRYPT, $options);
+function generate_hash($password, $hash) {
+	$hash = password_hash($password, PASSWORD_BCRYPT);
 	// Store hash and salt on server
 };
 
