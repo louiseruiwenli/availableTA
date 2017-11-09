@@ -29,8 +29,6 @@ if(isset($result_labinfo)){
   }
   echo json_encode($rows);
 
-    //$_SESSION['LabID'] = $LabID;
-
 }else{
 
   echo json_encode('No result');

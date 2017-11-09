@@ -23,7 +23,7 @@ function loginapply(){
       if(result=='Login'){
         localStorage.setItem('username',$("#username").val());
         //alert(localStorage.getItem('username'));
-        location.href = '../index.php';
+        location.href = '../index.html';
       }else if (result=='WrongPass'){
         alert('Invalid combination of username and password');
       }else if (result=='NoUser') {
