@@ -32,6 +32,8 @@ if(isset($result)){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/template.css">
     <link rel="stylesheet" type="text/css" href="css/schedule.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src= "js/viewschedule.js"></script>
 
 </head>
 

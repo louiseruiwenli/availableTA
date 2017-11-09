@@ -1,4 +1,5 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
+    localStorage.clear();
     $("#username").keypress(function(event){
         if(event.keyCode == 13){
             $("#login").click();
@@ -12,6 +13,8 @@ $(document).ready(function(){
     });
 });
 
+*/
+
 function loginapply(){
   var username = $("#username").val();
   var password = $("#password").val();
@@ -19,7 +22,8 @@ function loginapply(){
   $.get('../php/login.php?username='+username+'&password='+password).done(function(result){
       if(result=='Login'){
         localStorage.setItem('username',$("#username").val());
-        window.location.href = '../index.php';
+        //alert(localStorage.getItem('username'));
+        location.href = '../index.php';
       }else if (result=='WrongPass'){
         alert('Invalid combination of username and password');
       }else if (result=='NoUser') {
@@ -43,7 +47,7 @@ $('#logout').click(function(e){
 
 function logoutapply(){
   $.get('../php/logout.php').done(function(){
-    localStorage.removeItem('username');
+    window.localStorage.clear();
     window.location.href = '../login.html';
   });
 }
