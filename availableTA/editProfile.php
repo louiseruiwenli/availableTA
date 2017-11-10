@@ -42,9 +42,11 @@ if($phone == ""){
     <meta charset="UTF-8">
     <title>Welcome</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
-    </style>
+    <link rel="stylesheet" href="css/template.css">
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src= "js/login.js"></script>
+    <script src= "js/viewProfile.js"></script>
 </head>
 
 <body>
@@ -64,10 +66,7 @@ if($phone == ""){
       </div>
       <div id="lablist" class = "col-md-8 text-left">
         <h3>Personal Information</h3>
-        <p>Name: <?=$userName?></p>
-        <p>ID: <?=$userID?></p>
-        <p>Email: <?=$email?></p>
-        <p>Job: <?=$job?></p>
+
         <?php
         if(isset($_POST["Save"])){
           $phone = $_POST['phone'];

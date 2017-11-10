@@ -8,14 +8,14 @@
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src= "js/login.js"></script>
-    <script src= "js/viewProfile.js"></script>
+    <script src= "js/editPersonalInfo.js"></script>
 </head>
 
 <body>
     <div class="page-header">
         <h1>AvailableTA</h1>
     </div>
-    <div class = "container-flow text-left">
+    <div class = "container-flow">
       <div id="menu" class="col-md-2">
         <img>
         <ul class="list-group text-left nav nav-bar">
@@ -26,25 +26,13 @@
           <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
-      <div class = "col-md-8">
-        <div class = "col-md-6">
-          <div id="personalinfo">
-            <h3>Personal Information</h3>
-
-          </div>
-          <a href="editPersonalInfo.html"><button class="btn btn-primary">Edit Contact Information</button></a>
+      <div class = "col-md-8 text-left">
+        <div id="personalinfo">
+        <h3>Personal Information</h3>
         </div>
-
-        <div class = "col-md-6">
-          <div id="labinfo">
-            <h3>Lab Information</h3>
-
-
-          </div>
-          <button class="btn btn-primary" href="editLabInfo.html">Edit Lab Session</button>
-        </div>
+        <button id="update" class="btn btn-primary" onclick="updateinfo();">Update</button>
       </div>
-      <div class="col-md-2">
+      <div id="menu" class="col-md-2">
       </div>
     </div>
 </body>
