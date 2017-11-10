@@ -2,39 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AvailableTA</title>
+    <title>Welcome</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="css/template.css">
-    <link rel="stylesheet" href="css/index.css">
 
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/index.js"></script>
-
+    <script src= "js/login.js"></script>
+    <script src= "js/viewProfile.js"></script>
 </head>
 
 <body>
     <div class="page-header">
         <h1>AvailableTA</h1>
     </div>
-    <div class = "container-flow">
+    <div class = "container-flow text-left">
       <div id="menu" class="col-md-2">
         <img>
         <ul class="list-group text-left nav nav-bar">
           <li class="list-group-item"><a href="index.html">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.html">View Profile</a></li>
           <li class="list-group-item"><a href="editProfile.php">Edit Profile</a></li>
-          <li class="list-group-item" id="viewschedule"><a href="viewSchedule.php">View Schedule</a></li>
-          <li class="list-group-item"><a id ="logout" href="login.html">Logout</a></li>
+          <li class="list-group-item"><a href="viewSchedule.php">View Schedule</a></li>
+          <li class="list-group-item"><a href="logout.php">Logout</a></li>
         </ul>
-
       </div>
-      <div id="lablist" class = "col-md-8">
+      <div class = "col-md-8">
+        <div class = "col-md-6">
+          <div id="personalinfo">
+            <h3>Personal Information</h3>
+
+          </div>
+          <button class="btn btn-primary" href="editPersonalInfo.html">Edit Lab Session</button>
+        </div>
+
+        <div class = "col-md-6">
+          <div id="labinfo">
+            <h3>Lab Information</h3>
 
 
+          </div>
+          <button class="btn btn-primary" href="editLabInfo.html">Edit Lab Session</button>
+        </div>
       </div>
       <div class="col-md-2">
-
       </div>
     </div>
 </body>

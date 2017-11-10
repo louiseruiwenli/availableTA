@@ -17,20 +17,12 @@ $rows = array();
 if(isset($result_labinfo)){
 
   while($row = mysqli_fetch_assoc($result_labinfo)){
-    $LabID = $row[0];
-    $CourseNumber = $row[1];
-    $CourseName = $row[2];
-    $StartTime = $row[3];
-    $EndTime = $row[4];
-    $DayOfWeek = $row[5];
-    $QuarterYear = $row[6];
 
     $rows[] = $row;
   }
   echo json_encode($rows);
 
 }else{
-
   echo json_encode('No result');
 }
 

@@ -14,8 +14,12 @@
 });
 
 */
+function initialization(){
+  localStorage.clear();
+}
 
 function loginapply(){
+  localStorage.clear();
   var username = $("#username").val();
   var password = $("#password").val();
 
@@ -40,14 +44,17 @@ function loginapply(){
 
 $('#logout').click(function(e){
   e.preventDefault();
-  var href = $(this).attr('href');
   localStorage.clear();
+  localStorage.removeItem('job');
+  localStorage.removeItem('username');
+  localStorage.removeItem('userID');
+  var href = $(this).attr('href');
   window.location = href;
 });
 
 function logoutapply(){
   $.get('../php/logout.php').done(function(){
-    window.localStorage.clear();
-    window.location.href = '../login.html';
+    localStorage.clear();
+    location.href = '../login.html';
   });
 }
