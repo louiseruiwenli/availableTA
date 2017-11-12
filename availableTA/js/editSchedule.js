@@ -10,15 +10,12 @@ $(document).ready(function(){
 
   var dayOfWeek = ['M','T','W','R','F'];
   $.each(dayOfWeek,function(key,day){
-    $.get('../phph/getScheduleInfo.php?userID='+userID+'&dayOfWeek='day+'&time=Morning').done(function(result){
-        var result_json = .parseJSON(result);
-        var td = document.createElement('td');
-        $(td).appendTo($('#morning'));
+    $.get('../phph/getScheduleInfo.php?userID='+userID+'&dayOfWeek='day).done(function(result){
 
-        alert(result)
     });
 
   });
+
 
 
 });

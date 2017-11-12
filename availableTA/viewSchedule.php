@@ -65,7 +65,7 @@ if(isset($result)){
         </tr>
         </div>
 
-        <tr>
+        <tr id="morning">
             <th>9:15am - 12:00am</th>
             <?php
             $week_array = array("M","T","W","R","F");
