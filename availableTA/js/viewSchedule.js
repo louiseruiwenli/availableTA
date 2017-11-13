@@ -10,12 +10,41 @@ $(document).ready(function(){
 
   var dayOfWeek = ['M','T','W','R','F'];
   $.each(dayOfWeek,function(key,day){
-    $.get('../phph/getScheduleInfo.php?userID='+userID+'&dayOfWeek='day+'&time=Morning').done(function(result){
-        var result_json = .parseJSON(result);
-        var td = document.createElement('td');
-        $(td).appendTo($('#morning'));
+    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Morning').done(function(result){
+        var result_json = $.parseJSON(result);
+        var td_morning = document.createElement('td');
+        $(td_morning).appendTo($('#morning'));
+        if(result_json['Morning']==false){
+          $(td_morning).addClass('unavailable');
+        }else{
+          $(td_morning).addClass('available');
+        }
 
-        alert(result)
+
+    });
+
+    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
+        var result_json = $.parseJSON(result);
+        var td_afternoon = document.createElement('td');
+        $(td_afternoon).appendTo($('#afternoon'));
+        if(result_json['Afternoon']==false){
+          $(td_afternoon).addClass('unavailable');
+        }else{
+          $(td_afternoon).addClass('available');
+        }
+
+    });
+
+    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
+        var result_json = $.parseJSON(result);
+        var td_evening = document.createElement('td');
+        $(td_evening).appendTo($('#evening'));
+        if(result_json['Evening']==false){
+          $(td_evening).addClass('unavailable');
+        }else{
+          $(td_evening).addClass('available');
+        }
+
     });
 
   });

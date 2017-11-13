@@ -4,7 +4,10 @@ session_start();
 if($_GET['action']=='update'){
   if($_GET['job']){
     $job = $_GET['job'];
+  }else{
+    $job = 0;
   }
+
 
 
   if($_GET['labID']){
@@ -32,6 +35,8 @@ if($_GET['action']=='update'){
 if($_GET['action']=='delete'){
   if($_GET['job']){
     $job = $_GET['job'];
+  }else{
+    $job = 0;
   }
 
 

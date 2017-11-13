@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  alert(localStorage.getItem('username'));
+  //alert(localStorage.getItem('username'));
   if(window.localStorage.getItem('username')===null){
     alert("No username");
     window.location.href = '../login.html';
@@ -9,7 +9,7 @@ $(document).ready(function(){
   var job = localStorage.getItem('job');
 
   $.get('../php/getAllLabInfo.php').done(function(result){
-    alert(result);
+    //alert(result);
     var result_json = $.parseJSON(result);
     var form = document.createElement("form");
     $(form).addClass('form-group')
@@ -48,11 +48,11 @@ $(document).ready(function(){
                   .click(function(){
                     $.get('../php/editLabInfo.php?action=delete&job='+job+'&labID='+val['LabID']).done(function(result){
                       alert('Delete Success');
-                      $(location).attr('href','../viewProfile.html');
+                      window.location.href = '../editLabInfo.html';
 
                     });
-                    $('#userlablist').remove($(p));
-                    window.location.replace('../viewProfile.html');
+                    //$('#userlablist').remove($(p));
+
                   });
     });
 
@@ -64,17 +64,13 @@ function updateinfo(){
   var userID = localStorage.getItem('userID');
 
   $.each($("input[name='lablist']:checked"),function(){
-    //alert($(this).val());
+
     $.get('../php/editLabInfo.php?action=update&job='+job+'&userID='+userID+'&labID='+$(this).val()).done(function(result){
-      //console.log(result);
+
       window.location.href = '../viewProfile.html';
 
 
     });
   });
-
-  var checkedlab = document.getElementsByName('lablist').value;
-
-  var username = localStorage.getItem('username');
 
 }

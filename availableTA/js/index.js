@@ -38,12 +38,15 @@ $(document).ready(function(){
         var endtime = document.createElement("p");
         $(endtime).html('End Time: '+val['EndTime']).appendTo($(d));
         var request = document.createElement("button");
+
         $(request).addClass('btn')
                   .addClass('btn-warning')
+                  .attr('value',val["LabID"])
                   .html('Request')
                   .appendTo($(d))
                   .click(function(){
-                    alert('test');
+                    localStorage.setItem('requestLab',val["LabID"]);
+                    window.location.href = 'taList.html';
                   });
 
 
