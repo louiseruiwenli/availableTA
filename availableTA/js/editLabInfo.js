@@ -4,6 +4,11 @@ $(document).ready(function(){
     alert("No username");
     window.location.href = '../login.html';
   }
+
+  if(localStorage.getItem('job')==1){
+    $('#viewschedule').addClass('disabled');
+  }
+
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
@@ -18,7 +23,7 @@ $(document).ready(function(){
     $.each(result_json, function(key, val){
       var p = document.createElement("p");
       $(p).html(val['LabID']+'&nbsp;'+val['CourseNumber'])
-          .addClass('col-md-6')
+          .addClass('col-md-4')
           .appendTo($(form));
       var checkbox = document.createElement("input");
       $(checkbox).attr('type','checkbox')

@@ -1,15 +1,19 @@
 $(document).ready(function(){
-  alert(localStorage.getItem('username'));
+
   if(window.localStorage.getItem('username')===null){
     alert("No username");
     window.location.href = '../login.html';
   }
+
+  if(localStorage.getItem('job')==1){
+    $('#viewschedule').addClass('disabled');
+  }
+
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
 
   $.get('../php/viewUserInfo.php?username='+username).done(function(result){
-    alert(result);
     var result_json = $.parseJSON(result);
     var name = document.createElement("p");
     $(name).html('Name: ' + result_json[0]['Name']).appendTo($('#personalinfo'));
@@ -29,9 +33,9 @@ $(document).ready(function(){
   });
 
   $.get('../php/getUserLabInfo.php?job='+job+'&userID='+userID).done(function(result_lab){
-    alert(result_lab);
+
     var result_json = $.parseJSON(result_lab);
-    //var labList = document.getElementById('lablist');
+
     $.each(result_json, function(index, val){
       var p = document.createElement('p');
       $(p).html(val['LabID']+'&nbsp;'+val['CourseNumber']+'&nbsp;'+val['CourseName']).appendTo($('#labinfo'));

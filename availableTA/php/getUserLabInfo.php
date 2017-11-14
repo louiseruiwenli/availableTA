@@ -1,6 +1,5 @@
 <?php
 require "dbConfig.php";
-session_start();
 
 if(isset($_GET['job'])){
   $job = $_GET['job'];
@@ -17,7 +16,6 @@ $rows = array();
 if(isset($result_labinfo)){
 
   while($row = mysqli_fetch_assoc($result_labinfo)){
-
     $rows[] = $row;
   }
   echo json_encode($rows);

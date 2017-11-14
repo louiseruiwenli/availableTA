@@ -1,8 +1,12 @@
 $(document).ready(function(){
-  alert(localStorage.getItem('username'));
   if(window.localStorage.getItem('username')===null){
     alert("No username");
     window.location.href = '../login.html';
+  }
+
+  if(localStorage.getItem('job')==1){
+    window.location.href = '../index.html';
+    $('#viewschedule').addClass('disabled');
   }
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');

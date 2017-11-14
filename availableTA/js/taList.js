@@ -1,4 +1,13 @@
 $(document).ready(function(){
+  if(window.localStorage.getItem('username')===null){
+    alert("No username");
+    window.location.href = '../login.html';
+  }
+
+  if(localStorage.getItem('job')==1){
+    $('#viewschedule').addClass('disabled');
+  }
+
   var labID = localStorage.getItem('requestLab');
   localStorage.removeItem('requestLab');
 

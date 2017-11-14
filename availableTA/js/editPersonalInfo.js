@@ -1,15 +1,19 @@
 $(document).ready(function(){
-  alert(localStorage.getItem('username'));
+
   if(window.localStorage.getItem('username')===null){
     alert("No username");
     window.location.href = '../login.html';
+  }
+
+  if(localStorage.getItem('job')==1){
+    $('#viewschedule').addClass('disabled');
   }
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
 
   $.get('../php/viewUserInfo.php?username='+username).done(function(result){
-    alert(result);
+
     var result_json = $.parseJSON(result);
     var name = document.createElement("p");
     $(name).html('Name: ' + result_json[0]['Name']).appendTo($('#personalinfo'));
@@ -41,12 +45,11 @@ $(document).ready(function(){
 function updateinfo(){
   var newphone = document.getElementById('newphone').value;
   var username = localStorage.getItem('username');
-  alert(newphone);
+
   $.get('../php/editPersonalInfo.php?username='+username+'&phone='+newphone).done(function(result){
-    alert(result);
-    //if(result=='Update Success'){
+
       window.location.href = '../viewProfile.html';
-    //}
+
 
   });
 }

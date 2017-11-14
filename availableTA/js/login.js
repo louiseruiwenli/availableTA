@@ -1,19 +1,3 @@
-/*$(document).ready(function(){
-    localStorage.clear();
-    $("#username").keypress(function(event){
-        if(event.keyCode == 13){
-            $("#login").click();
-        }
-    });
-
-    $("#password").keypress(function(event){
-        if(event.keyCode == 13){
-            $("#login").click();
-        }
-    });
-});
-
-*/
 function initialization(){
   localStorage.clear();
 }

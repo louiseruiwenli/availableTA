@@ -16,27 +16,26 @@
         <h1>AvailableTA</h1>
     </div>
     <div class = "container-flow">
-      <div id="menu" class="col-md-2">
+      <div id="menu" class="col-md-3">
         <img>
         <ul class="list-group text-left nav nav-bar">
           <li class="list-group-item"><a href="index.html">Home</a></li>
           <li class="list-group-item"><a href="viewProfile.html">View/Edit Profile</a></li>
-          <li class="list-group-item"><a href="viewSchedule.html">View/Edit Schedule</a></li>
-          <li class="list-group-item"><a href="logout.php">Logout</a></li>
+          <li class="list-group-item" id="viewschedule"><a href="viewSchedule.html">View/Edit Schedule</a></li>
+          <li class="list-group-item"><a id ="logout" href="login.html">Logout</a></li>
         </ul>
       </div>
-      <div class = "col-md-8 text-left">
-        <div id="lablist" class = "col-md-6 text-left">
+      <div class = "col-md-9 text-left">
+        <div id="lablist" class = "col-md-8 text-left">
           <h3>Choose your Lab Session</h3>
         </div>
-        <div id="userlablist" class = "col-md-6 text-left">
+        <div id="userlablist" class = "col-md-4 text-left">
           <h3>Your Lab Session</h3>
         </div>
 
         <button id="update" class="btn btn-primary" onclick="updateinfo();">Update</button>
       </div>
-      <div id="menu" class="col-md-2">
-      </div>
+
     </div>
 </body>
 </html>

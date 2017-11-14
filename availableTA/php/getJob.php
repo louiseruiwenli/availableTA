@@ -1,7 +1,5 @@
 <?php
 require "dbConfig.php";
-// Initialize the session
-session_start();
 
   if($_GET['username']){
     $email = $_GET['username'];
@@ -11,9 +9,6 @@ session_start();
     $rows = array();
     if(isset($result)){
       while($row = mysqli_fetch_assoc($result)){
-        $userID = $row['ID'];
-        $job = $row['TAProf'];
-        $_SESSION['job'] = $job;
         $rows[]= $row;
       }
 
