@@ -1,18 +1,18 @@
 $(document).ready(function(){
   if(window.localStorage.getItem('username')===null){
     alert("No username");
-    window.location.href = '../login.html';
+    window.location.href = 'login.html';
   }
   if(localStorage.getItem('job')==1){
-    window.location.href = '../index.html';
+    window.location.href = 'index.html';
   }
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
 
-  var dayOfWeek = ['M','T','W','R','F'];
+  var dayOfWeek = ["M","T","W","R","F"];
   $.each(dayOfWeek,function(key,day){
-    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Morning').done(function(result){
+    $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Morning').done(function(result){
         var result_json = $.parseJSON(result);
         var td_morning = document.createElement('td');
         $(td_morning).appendTo($('#morning'));
@@ -32,7 +32,7 @@ $(document).ready(function(){
 
     });
 
-    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
+    $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
         var result_json = $.parseJSON(result);
         var td_afternoon = document.createElement('td');
         $(td_afternoon).appendTo($('#afternoon'));
@@ -51,7 +51,7 @@ $(document).ready(function(){
 
     });
 
-    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
+    $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
         var result_json = $.parseJSON(result);
         var td_evening = document.createElement('td');
         $(td_evening).appendTo($('#evening'));
@@ -77,41 +77,35 @@ $(document).ready(function(){
 function updateSchedule(){
 
   var userID = localStorage.getItem('userID');
-  var dayOfWeek = ['M','T','W','R','F'];
-  var done = false;
+  var dayOfWeek = ["M","T","W","R","F"];
 
   $.each($("input[name='morning_box']"),function(index, value){
       if(this.checked){
-        $.get('../php/editSchedule.php?action=available&time=Morning&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+        $.get('editSchedule.php?action=available&time=Morning&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
 
       }else{
-        $.get('../php/editSchedule.php?action=unavailable&time=Morning&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+        $.get('editSchedule.php?action=unavailable&time=Morning&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
       }
   });
 
   $.each($("input[name='afternoon_box']"),function(index, value){
       if(this.checked){
-        $.get('../php/editSchedule.php?action=available&time=Afternoon&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+        $.get('editSchedule.php?action=available&time=Afternoon&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
       }else{
-        $.get('../php/editSchedule.php?action=unavailable&time=Afternoon&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+        $.get('editSchedule.php?action=unavailable&time=Afternoon&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
       }
   });
 
   $.each($("input[name='evening_box']"),function(index, value){
       if(this.checked){
-          $.get('../php/editSchedule.php?action=available&time=Evening&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+          $.get('editSchedule.php?action=available&time=Evening&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
       }else{
-        $.get('../php/editSchedule.php?action=unavailable&time=Evening&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
-      }
-
-      if(dayOfWeek[index]=='F'){
-        done = true;
+        $.get('editSchedule.php?action=unavailable&time=Evening&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
       }
   });
 
-  if(done){
-    window.location.href = '../viewSchedule.html';
-  }
+  window.location.href = 'viewSchedule.html';
+
 
 
 

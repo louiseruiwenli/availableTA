@@ -2,18 +2,18 @@ $(document).ready(function(){
 
   if(window.localStorage.getItem('username')===null){
     alert("No username");
-    window.location.href = '../login.html';
+    window.location.href = 'login.html';
   }
 
   if(localStorage.getItem('job')==1){
     $('#viewschedule').addClass('disabled');
   }
-
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
 
-  $.get('../php/viewUserInfo.php?username='+username).done(function(result){
+  $.get('viewUserInfo.php?username='+username).done(function(result){
+
     var result_json = $.parseJSON(result);
     var name = document.createElement("p");
     $(name).html('Name: ' + result_json[0]['Name']).appendTo($('#personalinfo'));
@@ -27,19 +27,29 @@ $(document).ready(function(){
     }else{
       $(TAProf).html('Job: Professor').appendTo($('#personalinfo'));
     }
+    var form = document.createElement("form");
+    $(form).appendTo($('#personalinfo'));
 
     var phone = document.createElement("p");
-    $(phone).html('Phone: ' + result_json[0]['phone']).appendTo($('#personalinfo'));
-  });
+    $(phone).html('Phone: ').appendTo($(form));
 
-  $.get('../php/getUserLabInfo.php?job='+job+'&userID='+userID).done(function(result_lab){
-
-    var result_json = $.parseJSON(result_lab);
-
-    $.each(result_json, function(index, val){
-      var p = document.createElement('p');
-      $(p).html(val['LabID']+'&nbsp;'+val['CourseNumber']+'&nbsp;'+val['CourseName']).appendTo($('#labinfo'));
-    });
+    var input = document.createElement("input");
+    $(input).attr('id', 'newphone')
+            .attr('name', 'phone')
+            .attr('value',result_json[0]['phone'])
+            .appendTo($(form));
 
   });
 });
+
+function updateinfo(){
+  var newphone = document.getElementById('newphone').value;
+  var username = localStorage.getItem('username');
+
+  $.get('editPersonalInfo.php?username='+username+'&phone='+newphone).done(function(result){
+
+      window.location.href = 'viewProfile.html';
+
+
+  });
+}

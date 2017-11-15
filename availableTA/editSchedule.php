@@ -12,6 +12,7 @@ if($_GET['time']){
 if($_GET['dayOfWeek']){
   $day = $_GET['dayOfWeek'];
 }
+
 if($_GET['action'] == 'available'){
   $sql_update_available = "UPDATE Schedule SET $time = '1' WHERE UserID = '$userID' and DayOfWeek = '$day'";
   $result_available = mysqli_query($link, $sql_update_available);

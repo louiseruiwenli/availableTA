@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" href="css/template.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src= "js/login.js"></script>
-    <style type="text/css">
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    <link rel="stylesheet" href="template.css">
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src= "login.js"></script>
+
 </head>
 <body onload="initialization();">
     <div class="container-flow">
@@ -20,19 +19,19 @@
         <p>Please fill in your credentials to login.</p>
         <form class="wrapper text-left" method="get">
         <!--<form action="checklogin.php" method="post">-->
-            <div class="form-group">
+            <div class="form-group credentials">
                 <label>Username:<sup>*</sup></label>
                 <input id="username" type="text" name="username" class="form-control" placeholder="username">
                 <span class="help-block" ></span>
             </div>
-            <div class="form-group">
+            <div class="form-group credentials">
                 <label>Password:<sup>*</sup></label>
                 <input id="password" type="password" name="password" class="form-control" placeholder="password">
                 <span class="help-block" ></span>
 
             </div>
             <p id="err_notice"></p>
-            <div class="form-group">
+            <div class="form-group credentials">
                 <button type="submit" class="btn btn-primary" value="Login" onclick="loginapply();" id="login">Login</button>
             </div>
         </form>

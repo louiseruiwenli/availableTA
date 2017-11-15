@@ -2,7 +2,7 @@ $(document).ready(function(){
   //alert(localStorage.getItem('username'));
   if(window.localStorage.getItem('username')===null){
     alert("No username");
-    window.location.href = '../login.html';
+    window.location.href = 'login.html';
   }
 
   if(localStorage.getItem('job')==1){
@@ -13,7 +13,7 @@ $(document).ready(function(){
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
 
-  $.get('../php/getAllLabInfo.php').done(function(result){
+  $.get('getAllLabInfo.php').done(function(result){
     //alert(result);
     var result_json = $.parseJSON(result);
     var form = document.createElement("form");
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
   });
 
-  $.get('../php/getUserLabInfo.php?job='+job+'&userID='+userID).done(function(result_lab){
+  $.get('getUserLabInfo.php?job='+job+'&userID='+userID).done(function(result_lab){
     //alert(result_lab);
     var result_json = $.parseJSON(result_lab);
     $.each(result_json, function(index, val){
@@ -51,9 +51,9 @@ $(document).ready(function(){
                   .attr('type','reset')
                   .prependTo($(p))
                   .click(function(){
-                    $.get('../php/editLabInfo.php?action=delete&job='+job+'&labID='+val['LabID']).done(function(result){
+                    $.get('editLabInfo.php?action=delete&job='+job+'&labID='+val['LabID']).done(function(result){
                       alert('Delete Success');
-                      window.location.href = '../editLabInfo.html';
+                      window.location.href = 'editLabInfo.html';
 
                     });
                     //$('#userlablist').remove($(p));
@@ -70,9 +70,9 @@ function updateinfo(){
 
   $.each($("input[name='lablist']:checked"),function(){
 
-    $.get('../php/editLabInfo.php?action=update&job='+job+'&userID='+userID+'&labID='+$(this).val()).done(function(result){
+    $.get('editLabInfo.php?action=update&job='+job+'&userID='+userID+'&labID='+$(this).val()).done(function(result){
 
-      window.location.href = '../viewProfile.html';
+      window.location.href = 'viewProfile.html';
 
 
     });

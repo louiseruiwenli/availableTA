@@ -1,11 +1,11 @@
 $(document).ready(function(){
   if(window.localStorage.getItem('username')===null){
     alert("No username");
-    window.location.href = '../login.html';
+    window.location.href = 'login.html';
   }
 
   if(localStorage.getItem('job')==1){
-    window.location.href = '../index.html';
+    window.location.href = 'index.html';
     $('#viewschedule').addClass('disabled');
   }
   var username = localStorage.getItem('username');
@@ -14,7 +14,7 @@ $(document).ready(function(){
 
   var dayOfWeek = ['M','T','W','R','F'];
   $.each(dayOfWeek,function(key,day){
-    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Morning').done(function(result){
+    $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Morning').done(function(result){
         var result_json = $.parseJSON(result);
         var td_morning = document.createElement('td');
         $(td_morning).appendTo($('#morning'));
@@ -27,7 +27,7 @@ $(document).ready(function(){
 
     });
 
-    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
+    $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
         var result_json = $.parseJSON(result);
         var td_afternoon = document.createElement('td');
         $(td_afternoon).appendTo($('#afternoon'));
@@ -39,7 +39,7 @@ $(document).ready(function(){
 
     });
 
-    $.get('../php/getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
+    $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
         var result_json = $.parseJSON(result);
         var td_evening = document.createElement('td');
         $(td_evening).appendTo($('#evening'));
@@ -48,10 +48,7 @@ $(document).ready(function(){
         }else{
           $(td_evening).addClass('available');
         }
-
     });
 
   });
-
-
 });

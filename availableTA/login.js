@@ -7,20 +7,23 @@ function loginapply(){
   var username = $("#username").val();
   var password = $("#password").val();
 
-  $.get('../php/login.php?username='+username+'&password='+password).done(function(result){
-      if(result=='Login'){
+  $.get('login.php?username='+username+'&password='+password).done(function(result){
+
+      var result_json = $.parseJSON(result);
+
+      if(result_json=="Login"){
         localStorage.setItem('username',$("#username").val());
         //alert(localStorage.getItem('username'));
-        location.href = '../index.html';
-      }else if (result=='WrongPass'){
+        window.location.href = 'index.html';
+      }else if (result=="WrongPass"){
         alert('Invalid combination of username and password');
-      }else if (result=='NoUser') {
+      }else if (result=="NoUser") {
         alert('Username does not exist');
-      }else if (result == 'Error'){
+      }else if (result == "Error"){
         alert('Oops! Something went wrong. Please try again later.');
-      }else if (result == 'EmptyUser') {
+      }else if (result == "EmptyUser") {
         alert('Please enter username');
-      }else if (result == 'EmptyPass') {
+      }else if (result == "EmptyPass") {
         alert('Please enter password');
       }
   })
@@ -37,8 +40,8 @@ $('#logout').click(function(e){
 });
 
 function logoutapply(){
-  $.get('../php/logout.php').done(function(){
+  $.get('logout.php').done(function(){
     localStorage.clear();
-    location.href = '../login.html';
+    location.href = 'login.html';
   });
 }

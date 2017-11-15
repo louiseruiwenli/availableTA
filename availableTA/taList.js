@@ -1,7 +1,7 @@
 $(document).ready(function(){
   if(window.localStorage.getItem('username')===null){
     alert("No username");
-    window.location.href = '../login.html';
+    window.location.href = 'login.html';
   }
 
   if(localStorage.getItem('job')==1){
@@ -11,12 +11,13 @@ $(document).ready(function(){
   var labID = localStorage.getItem('requestLab');
   localStorage.removeItem('requestLab');
 
-  $.get('../php/getTAlist.php?labID='+labID).done(function(result){
-      alert(result);
+  $.get('getTAlist.php?labID='+labID).done(function(result){
       var result_json = $.parseJSON(result);
       $.each(result_json, function(index, value){
           var div = document.createElement('div');
-          $(div).appendTo($('#talist'));
+          $(div).addClass('col-md-6')
+                .addClass('TAinfo')
+                .appendTo($('#talist'));
           var name = document.createElement('h4');
           $(name).html(value['Name']).appendTo($(div));
           var email = document.createElement('p');

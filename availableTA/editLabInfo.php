@@ -1,6 +1,6 @@
 <?php
 require "dbConfig.php";
-session_start();
+
 if($_GET['action']=='update'){
   if($_GET['job']){
     $job = $_GET['job'];

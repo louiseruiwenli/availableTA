@@ -1,7 +1,5 @@
 <?php
 require "dbConfig.php";
-// Initialize the session
-session_start();
 
 if(isset($_GET['username'])){
   $email = $_GET['username'];

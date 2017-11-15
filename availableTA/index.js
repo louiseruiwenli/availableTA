@@ -1,13 +1,13 @@
 $(document).ready(function(){
   //check user login status
   if(window.localStorage.getItem('username')===null){
-    alert("No username");
-    window.location.href = '../login.html';
+    //alert("No username");
+    window.location.href = 'login.html';
   }
 
   //retrieve user information
   var username = localStorage.getItem('username');
-  $.get('../php/getJob.php?username='+username).done(function(result){
+  $.get('getJob.php?username='+username).done(function(result){
     //return userID and job
     var result_json = $.parseJSON(result);
     if(result_json=='No Result'){
@@ -22,7 +22,7 @@ $(document).ready(function(){
     localStorage.setItem('job',job);
 
 
-    $.get('../php/getUserLabInfo.php?job='+localStorage.getItem('job')+'&userID='+localStorage.getItem('userID')).done(function(result_lab){
+    $.get('getUserLabInfo.php?job='+localStorage.getItem('job')+'&userID='+localStorage.getItem('userID')).done(function(result_lab){
       //return lab info
       var result_json = $.parseJSON(result_lab);
 
