@@ -16,13 +16,11 @@ body
 
 .page-header{
   color: white;
-  background-color: darkred;
+  background-color: #95283c;
   height: 150px;
   margin: 0px;
   padding: 0px;
   border: 0px;
-  align-items: center;
-  justify-content: center;
   display: flex;
 }
 
@@ -30,4 +28,21 @@ body
   position: relative;
   margin-left: 50px;
   margin-right: 50px;
+}
+
+img{
+  display: block;
+  margin: auto;
+  height: 100%;
+}
+
+.titleName{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#menu{
+  margin-top: 30px;
 }

@@ -7,23 +7,24 @@ function loginapply(){
   var username = $("#username").val();
   var password = $("#password").val();
 
+  alert("here!");
   $.get('login.php?username='+username+'&password='+password).done(function(result){
-
+      alert(result);
       var result_json = $.parseJSON(result);
 
       if(result_json=="Login"){
         localStorage.setItem('username',$("#username").val());
-        //alert(localStorage.getItem('username'));
+        alert(localStorage.getItem('username'));
         window.location.href = 'index.html';
-      }else if (result=="WrongPass"){
+      }else if (result_json=="WrongPass"){
         alert('Invalid combination of username and password');
-      }else if (result=="NoUser") {
+      }else if (result_json=="NoUser") {
         alert('Username does not exist');
-      }else if (result == "Error"){
+      }else if (result_json == "Error"){
         alert('Oops! Something went wrong. Please try again later.');
-      }else if (result == "EmptyUser") {
+      }else if (result_json == "EmptyUser") {
         alert('Please enter username');
-      }else if (result == "EmptyPass") {
+      }else if (result_json == "EmptyPass") {
         alert('Please enter password');
       }
   })

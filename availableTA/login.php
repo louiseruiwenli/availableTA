@@ -2,6 +2,8 @@
 // Include config file
 require "dbConfig.php";
 
+//header("Access-Control-Allow-Origin: http://localhost:8887/login.php")
+
 //PHP header
 //header("Content-Type: application/json");
 
@@ -25,15 +27,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         $password = trim($_GET['password']);
       }
     }
-    //echo "Username: $username";
-
-    // Check if password is empty
 
 
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT email, password FROM User WHERE email = '$username'";
+        $sql = "SELECT password FROM User WHERE email = '$username'";
         $result=mysqli_query($link, $sql);
 
         //if($stmt = mysqli_prepare($link, $sql)or die(mysqli_error($link))){
@@ -47,6 +46,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
             //echo $param_username;
             $row = mysqli_fetch_assoc($result);
             $password_check = $row['password'];
+            //$password_check = $row['password'];
+
             // Attempt to execute the prepared statement
             //if(mysqli_stmt_execute($stmt)){
                 // Store result
@@ -59,13 +60,15 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                     //if(mysqli_stmt_fetch($stmt)){
                       //echo $password;
                       //echo $hash_password;
-                        if($password === $password_check){
+                        //if(password_verify($password, $password_check)==1){
+                        //if($password === $password_check){
+                        if(md5($password) === $password_check){
                             /* Password is correct, so start a new session and
                             save the username to the session */
                             echo json_encode('Login');
 
                             //header("location: index.php");
-                        } else{
+                        }else{
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
                             echo json_encode('WrongPass');
@@ -76,17 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                     $username_err = 'No account found with that username.';
                     echo json_encode('NoUser');
                 }
-            } else{
-                echo json_encode('Error');
-                //echo "Oops! Something went wrong. Please try again later.";
             }
 }
 
-        // Close statement
-        //mysqli_stmt_close($stmt);
-    //}
-
-    // Close connection
-    //mysqli_close($link);
-//}
 ?>

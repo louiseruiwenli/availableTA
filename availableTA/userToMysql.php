@@ -16,7 +16,7 @@ function generatePassword($length = 8) {
 if(isset($_POST["Import"])){
 
         $filename=$_FILES["file"]["tmp_name"];
-        $login_link = "students.engr.scu.edu/~rli/availableTA/login.php";
+        $login_link = "students.engr.scu.edu/~rli/availableTA/login.html";
 
 
          if($_FILES["file"]["size"] > 0)
@@ -28,7 +28,10 @@ if(isset($_POST["Import"])){
                  {
 
                     $account_password = generatePassword();
-                    $sql = "INSERT into User (ID, Name, email, password, TAProf) values ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$account_password."','".$getData[3]."')";
+                    //$password_hash = password_hash($account_password, PASSWORD_DEFAULT);
+                    $password_hash = md5($account_password);
+
+                    $sql = "INSERT into User (ID, Name, email, password, TAProf) values ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$password_hash."','".$getData[3]."')";
                     $result = mysqli_query($link, $sql);
 
                     if(!isset($result))
@@ -41,14 +44,17 @@ if(isset($_POST["Import"])){
                     else {
                         echo "<script type=\"text/javascript\">
                             alert(\"CSV File has been successfully Imported.\");
-                            window.location = \"admin.html\"
                             </script>";
+                        echo $account_password;
 
                         //mail system
                         $to=$getData[2];
                         $mailHeaders = "From: availableTA\r\n";
                         $subject = 'Your availableTA account has been activated';
                         $message = "Your user name is :$getData[2]\nYour password is: ".$account_password."\nGo to this link:".$login_link;
+                        echo "<script type=\"text/javascript\">
+                            alert(\"Ready to send mail to $getData[2]\");
+                            </script>";
                         mail($to, $subject, $message, $mailHeaders);
 
                         //create schedule schedule table

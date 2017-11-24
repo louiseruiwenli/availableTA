@@ -1,7 +1,7 @@
 $(document).ready(function(){
   //check user login status
   if(window.localStorage.getItem('username')===null){
-    //alert("No username");
+    alert("No username");
     window.location.href = 'login.html';
   }
 
