@@ -47,9 +47,6 @@ function updateinfo(){
   var username = localStorage.getItem('username');
 
   $.get('editPersonalInfo.php?username='+username+'&phone='+newphone).done(function(result){
-
       window.location.href = 'viewProfile.html';
-
-
   });
 }

@@ -9,6 +9,7 @@ $port = 3306;
 
 //Create connection and select DB
 $link = mysqli_connect($host, $user, $password, $db) or die("Error" . mysqli_error($link));
+
 */
 
 $user = 'root';
@@ -26,7 +27,6 @@ $success = mysqli_real_connect(
    $db,
    $port
 );
-
 
 
 ?>

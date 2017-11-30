@@ -45,7 +45,7 @@ if(isset($_POST["Import"])){
                         echo "<script type=\"text/javascript\">
                             alert(\"CSV File has been successfully Imported.\");
                             </script>";
-                        echo $account_password;
+                        //echo $account_password;
 
                         //mail system
                         $to=$getData[2];

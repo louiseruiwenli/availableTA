@@ -23,10 +23,9 @@ $(document).ready(function(){
         }else{
           $(td_morning).addClass('available');
         }
-
-
     });
 
+    sleep(40);
     $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
         var result_json = $.parseJSON(result);
         var td_afternoon = document.createElement('td');
@@ -39,6 +38,7 @@ $(document).ready(function(){
 
     });
 
+    sleep(40);
     $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
         var result_json = $.parseJSON(result);
         var td_evening = document.createElement('td');
@@ -52,3 +52,12 @@ $(document).ready(function(){
 
   });
 });
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}

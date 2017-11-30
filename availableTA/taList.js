@@ -12,10 +12,13 @@ $(document).ready(function(){
   localStorage.removeItem('requestLab');
 
   $.get('getTAlist.php?labID='+labID).done(function(result){
+      //alert(result);
       var result_json = $.parseJSON(result);
+
       if(result_json=='No Result'){
         var warning = document.createElement('h4');
-        $(h4).html('Warning: No TA available during this time period. Please find another solution or contact Professor Atkinson at datkinson@scu.edu')
+        $(warning).html('Warning: No TA available during this time period. Please find another solution or contact Professor Atkinson at datkinson@scu.edu')
+             .addClass('warning')
              .appendTo($('#talist'));
       }else{
         $.each(result_json, function(index, value){
@@ -31,8 +34,5 @@ $(document).ready(function(){
             $(phone).html('Phone: ' + value['phone']).appendTo($(div));
         });
       }
-
-
   });
-
 });

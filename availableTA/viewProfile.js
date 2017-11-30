@@ -29,7 +29,12 @@ $(document).ready(function(){
     }
 
     var phone = document.createElement("p");
-    $(phone).html('Phone: ' + result_json[0]['phone']).appendTo($('#personalinfo'));
+    if(result_json[0]['phone']==""){
+      $(phone).html('Phone: Please enter your cell phone number!').appendTo($('#personalinfo'));
+    }else{
+      $(phone).html('Phone: ' + result_json[0]['phone']).appendTo($('#personalinfo'));
+    }
+
   });
 
   $.get('getUserLabInfo.php?job='+job+'&userID='+userID).done(function(result_lab){

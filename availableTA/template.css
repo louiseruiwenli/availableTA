@@ -46,3 +46,10 @@ img{
 #menu{
   margin-top: 30px;
 }
+
+.warning{
+  color: #95283c;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+}

@@ -1,6 +1,6 @@
 $(document).ready(function(){
   //check user login status
-  if(window.localStorage.getItem('username')===null){
+  if(localStorage.getItem('username')===null){
     alert("No username");
     window.location.href = 'login.html';
   }
@@ -27,8 +27,9 @@ $(document).ready(function(){
       var result_json = $.parseJSON(result_lab);
 
       if(result_json.length==0){
-        $('#lablist').html('You do not have lab covered this quarter');
-        alert("No result!!!");
+        $('#lablist').html('You do not have lab session covered this quarter.')
+                     .addClass('warning');
+        //alert("No result!!!");
       }
 
       $.each(result_json, function(index, val){

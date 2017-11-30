@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT password FROM User WHERE email = '$username'";
+        $sql = "SELECT password FROM Admin WHERE username = '$username'";
         $result=mysqli_query($link, $sql);
 
         //if($stmt = mysqli_prepare($link, $sql)or die(mysqli_error($link))){
@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                       //echo $hash_password;
                         //if(password_verify($password, $password_check)==1){
                         //if($password === $password_check){
-                        if(md5($password) === $password_check){
+                        if($password === $password_check){
                             /* Password is correct, so start a new session and
                             save the username to the session */
                             echo json_encode('Login');

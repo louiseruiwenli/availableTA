@@ -6,6 +6,7 @@ $(document).ready(function(){
   if(localStorage.getItem('job')==1){
     window.location.href = 'index.html';
   }
+
   var username = localStorage.getItem('username');
   var userID = localStorage.getItem('userID');
   var job = localStorage.getItem('job');
@@ -32,6 +33,7 @@ $(document).ready(function(){
 
     });
 
+    sleep(40);
     $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Afternoon').done(function(result){
         var result_json = $.parseJSON(result);
         var td_afternoon = document.createElement('td');
@@ -51,6 +53,7 @@ $(document).ready(function(){
 
     });
 
+    sleep(40);
     $.get('getScheduleInfo.php?userID='+userID+'&dayOfWeek='+day+'&time=Evening').done(function(result){
         var result_json = $.parseJSON(result);
         var td_evening = document.createElement('td');
@@ -72,41 +75,81 @@ $(document).ready(function(){
 
   });
 
+
+  $('#viewSchedule_afterEdit').click(function(e){
+    e.preventDefault();
+    var href = $(this).attr('href');
+    updateSchedule(href);
+    window.setTimeout(function(){
+      window.location = href;
+    }, 500);
+
+
+
+  });
+
+
+  $('#back_viewSchedule').click(function(e){
+    e.preventDefault();
+    var href = $(this).attr('href');
+    window.location = href;
+  });
 });
 
-function updateSchedule(){
+
+function updateSchedule(href){
 
   var userID = localStorage.getItem('userID');
   var dayOfWeek = ["M","T","W","R","F"];
+  var morningcheck = false;
+  var afternooncheck = false;
 
-  $.each($("input[name='morning_box']"),function(index, value){
+  var morning_list = $("input[name='morning_box']");
+
+  //$.each(morning_list,function(index,val){
+  //  alert(this.checked);
+    //alert(this.value);
+  //});
+
+  $.each(morning_list,function(index_m, value){
       if(this.checked){
-        $.get('editSchedule.php?action=available&time=Morning&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+          $.get('editSchedule.php?action=available&time=Morning&userID='+userID+'&dayOfWeek='+this.value).done(function(){});
 
       }else{
-        $.get('editSchedule.php?action=unavailable&time=Morning&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
+          $.get('editSchedule.php?action=unavailable&time=Morning&userID='+userID+'&dayOfWeek='+this.value).done(function(){});
       }
+      if(index_m==4){
+
+          $.each($("input[name='afternoon_box']"),function(index_a, value){
+              if(this.checked){
+                $.get('editSchedule.php?action=available&time=Afternoon&userID='+userID+'&dayOfWeek='+this.value).done(function(){});
+              }else{
+                $.get('editSchedule.php?action=unavailable&time=Afternoon&userID='+userID+'&dayOfWeek='+this.value).done(function(){});
+              }
+              if(index_a==4){
+                $.each($("input[name='evening_box']"),function(index_e, value){
+                    if(this.checked){
+                      $.get('editSchedule.php?action=available&time=Evening&userID='+userID+'&dayOfWeek='+this.value).done(function(){});
+                    }else{
+                      $.get('editSchedule.php?action=unavailable&time=Evening&userID='+userID+'&dayOfWeek='+this.value).done(function(){});
+                    }
+
+                });
+              }
+
+
+          });
+      }
+
   });
 
-  $.each($("input[name='afternoon_box']"),function(index, value){
-      if(this.checked){
-        $.get('editSchedule.php?action=available&time=Afternoon&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
-      }else{
-        $.get('editSchedule.php?action=unavailable&time=Afternoon&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
-      }
-  });
+}
 
-  $.each($("input[name='evening_box']"),function(index, value){
-      if(this.checked){
-          $.get('editSchedule.php?action=available&time=Evening&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
-      }else{
-        $.get('editSchedule.php?action=unavailable&time=Evening&userID='+userID+'&dayOfWeek='+dayOfWeek[index]);
-      }
-  });
-
-  window.location.href = 'viewSchedule.html';
-
-
-
-
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }

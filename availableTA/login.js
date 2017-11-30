@@ -2,19 +2,20 @@ function initialization(){
   localStorage.clear();
 }
 
+
 function loginapply(){
   localStorage.clear();
   var username = $("#username").val();
   var password = $("#password").val();
 
-  alert("here!");
-  $.get('login.php?username='+username+'&password='+password).done(function(result){
+  alert("Attempting to login...");
+  $.get('/login.php?username='+username+'&password='+password).done(function(result){
       alert(result);
       var result_json = $.parseJSON(result);
 
       if(result_json=="Login"){
         localStorage.setItem('username',$("#username").val());
-        alert(localStorage.getItem('username'));
+        //alert(localStorage.getItem('username'));
         window.location.href = 'index.html';
       }else if (result_json=="WrongPass"){
         alert('Invalid combination of username and password');
@@ -27,7 +28,7 @@ function loginapply(){
       }else if (result_json == "EmptyPass") {
         alert('Please enter password');
       }
-  })
+  });
 }
 
 $('#logout').click(function(e){
@@ -39,10 +40,3 @@ $('#logout').click(function(e){
   var href = $(this).attr('href');
   window.location = href;
 });
-
-function logoutapply(){
-  $.get('logout.php').done(function(){
-    localStorage.clear();
-    location.href = 'login.html';
-  });
-}

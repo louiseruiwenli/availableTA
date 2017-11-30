@@ -28,7 +28,30 @@ $result_TAlist=mysqli_query($link, $sql_TAlist) or die($result_TAlist);
 
 
 if(isset($result_TAlist)){
-  if(mysqli_num_rows($result_TAlist)===0){
+  if(mysqli_num_rows($result_TAlist)==0){
+    $sql_profID = "SELECT Prof_ID FROM Lab WHERE LabID = '$labID'";
+    $result_profID=mysqli_query($link, $sql_profID);
+    if(isset($result_profID)){
+      $row = mysqli_fetch_assoc($result_profID);
+      $ProfID = $row['Prof_ID'];
+
+      $sql_profInfo = "SELECT email FROM User WHERE ID = '$ProfID'";
+      $result_profInfo = mysqli_query($link, $sql_profInfo);
+
+      if(mysqli_num_rows($result_profInfo)>0){
+          $row_prof = mysqli_fetch_assoc($result_profInfo);
+          $prof_email = $row_prof['email'];
+
+          //mail system
+          $to=$prof_email;
+          $mailHeaders = "From: availableTA\r\n";
+          $subject = 'One of your lab does not have TA available';
+          $message = "One of your TA has sent a request for substitute, but the system shows no available TA during the lab period. Please find another solution as soon as possible. The lab session ID is".$labID;
+          mail($to, $subject, $message, $mailHeaders);
+      }
+    }else{
+      echo json_encode("Error");
+    }
     echo json_encode("No Result");
   }else{
     $rows = array();
@@ -46,7 +69,7 @@ if(isset($result_TAlist)){
   }
 
 }else{
-   echo json_encode("No Result");
+   echo json_encode("Error");
 }
 
 ?>

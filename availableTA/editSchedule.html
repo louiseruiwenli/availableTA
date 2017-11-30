@@ -23,12 +23,19 @@
   </div>
     <div class = "container-flow">
       <div id="menu" class="col-md-3">
-        <ul class="list-group text-left nav nav-bar">
-          <li class="list-group-item"><a href="index.html">Home</a></li>
-          <li class="list-group-item"><a href="viewProfile.html">View/Edit Profile</a></li>
-          <li class="list-group-item" id="viewschedule"><a href="viewSchedule.html">View/Edit Schedule</a></li>
-          <li class="list-group-item"><a id ="logout" href="login.html">Logout</a></li>
-        </ul>
+        <div>
+          <ul class="list-group text-left nav nav-bar">
+            <li class="list-group-item"><a href="index.html">Home</a></li>
+            <li class="list-group-item"><a href="viewProfile.html">View/Edit Profile</a></li>
+            <li class="list-group-item" id="viewschedule"><a href="viewSchedule.html">View/Edit Schedule</a></li>
+            <li class="list-group-item"><a id ="logout" href="login.html">Logout</a></li>
+          </ul>
+        </div>
+        <div class = "note text-left">
+          <p>Note: </p>
+          <p>Please choose your lab sessions and update your cellphone number if this is your first time log in!</p>
+          <p>TA please remember to update your availability schedule as soon as possible.</p>
+        </div>
       </div>
       <div class="col-md-9">
         <form>
@@ -62,11 +69,11 @@
     </table>
 
 
-     <p align="center">Please check the box if you ARE available, and uncheck the box if NOT available.</p>
+    <p align="center">Please check the box if you ARE available, and uncheck the box if NOT available.</p>
 
     <div style="text-align:center">
-    <button class="btn btn-primary" onclick="updateSchedule();">Save Schedule</button>
-    <a href="viewSchedule.html"><button class="btn btn-primary">Back</button></a>
+    <a id="viewSchedule_afterEdit" href="viewSchedule.html"><button class="btn btn-primary">Save Schedule</button></a>
+    <a id="back_viewSchedule" href="viewSchedule.html"><button class="btn btn-primary">Back</button></a>
     </div>
     </form>
 
